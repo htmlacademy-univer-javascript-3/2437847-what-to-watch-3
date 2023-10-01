@@ -4,7 +4,7 @@ export const PlayerPage = () => (
       src="#"
       className="player__video"
       poster="img/player-poster.jpg"
-    ></video>
+    />
 
     <button type="button" className="player__exit">
       Exit
@@ -17,7 +17,7 @@ export const PlayerPage = () => (
             className="player__progress"
             value="30"
             max="100"
-          ></progress>
+          />
           <div className="player__toggler" style={{ left: '30%' }}>
             Toggler
           </div>
