@@ -1,10 +1,12 @@
-import {Footer} from '../../Components/Footer/Footer.tsx';
-import {Header} from '../../Components/Header/Header.tsx';
+import { Footer } from '../../Components/Footer/Footer.tsx';
+import { Header } from '../../Components/Header/Header.tsx';
 
 export const MyListPage = () => (
   <div className="user-page">
     <Header>
-      <h1 className="page-title user-page__title">My list <span className="user-page__film-count">9</span></h1>
+      <h1 className="page-title user-page__title">
+        My list <span className="user-page__film-count">9</span>
+      </h1>
     </Header>
 
     <section className="catalog">
@@ -13,92 +15,139 @@ export const MyListPage = () => (
       <div className="catalog__films-list">
         <article className="small-film-card catalog__films-card">
           <div className="small-film-card__image">
-            <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-              alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175"
-            />
-          </div>
-          <h3 className="small-film-card__title">
-            <a className="small-film-card__link" href="film-page.html">Fantastic Beasts: The Crimes of Grindelwald</a>
-          </h3>
-        </article>
-
-        <article className="small-film-card catalog__films-card">
-          <div className="small-film-card__image">
-            <img src="img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width="280" height="175"/>
-          </div>
-          <h3 className="small-film-card__title">
-            <a className="small-film-card__link" href="film-page.html">Bohemian Rhapsody</a>
-          </h3>
-        </article>
-
-        <article className="small-film-card catalog__films-card">
-          <div className="small-film-card__image">
-            <img src="img/macbeth.jpg" alt="Macbeth" width="280" height="175"/>
-          </div>
-          <h3 className="small-film-card__title">
-            <a className="small-film-card__link" href="film-page.html">Macbeth</a>
-          </h3>
-        </article>
-
-        <article className="small-film-card catalog__films-card">
-          <div className="small-film-card__image">
-            <img src="img/aviator.jpg" alt="Aviator" width="280" height="175"/>
-          </div>
-          <h3 className="small-film-card__title">
-            <a className="small-film-card__link" href="film-page.html">Aviator</a>
-          </h3>
-        </article>
-
-
-        <article className="small-film-card catalog__films-card">
-          <div className="small-film-card__image">
-            <img src="img/we-need-to-talk-about-kevin.jpg" alt="We need to talk about Kevin" width="280"
+            <img
+              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              alt="Fantastic Beasts: The Crimes of Grindelwald"
+              width="280"
               height="175"
             />
           </div>
           <h3 className="small-film-card__title">
-            <a className="small-film-card__link" href="film-page.html">We need to talk about Kevin</a>
+            <a className="small-film-card__link" href="film-page.html">
+              Fantastic Beasts: The Crimes of Grindelwald
+            </a>
           </h3>
         </article>
 
         <article className="small-film-card catalog__films-card">
           <div className="small-film-card__image">
-            <img src="img/what-we-do-in-the-shadows.jpg" alt="What We Do in the Shadows" width="280" height="175"/>
+            <img
+              src="img/bohemian-rhapsody.jpg"
+              alt="Bohemian Rhapsody"
+              width="280"
+              height="175"
+            />
           </div>
           <h3 className="small-film-card__title">
-            <a className="small-film-card__link" href="film-page.html">What We Do in the Shadows</a>
+            <a className="small-film-card__link" href="film-page.html">
+              Bohemian Rhapsody
+            </a>
           </h3>
         </article>
 
         <article className="small-film-card catalog__films-card">
           <div className="small-film-card__image">
-            <img src="img/revenant.jpg" alt="Revenant" width="280" height="175"/>
+            <img src="img/macbeth.jpg" alt="Macbeth" width="280" height="175" />
           </div>
           <h3 className="small-film-card__title">
-            <a className="small-film-card__link" href="film-page.html">Revenant</a>
+            <a className="small-film-card__link" href="film-page.html">
+              Macbeth
+            </a>
           </h3>
         </article>
 
         <article className="small-film-card catalog__films-card">
           <div className="small-film-card__image">
-            <img src="img/johnny-english.jpg" alt="Johnny English" width="280" height="175"/>
+            <img src="img/aviator.jpg" alt="Aviator" width="280" height="175" />
           </div>
           <h3 className="small-film-card__title">
-            <a className="small-film-card__link" href="film-page.html">Johnny English</a>
+            <a className="small-film-card__link" href="film-page.html">
+              Aviator
+            </a>
           </h3>
         </article>
 
+        <article className="small-film-card catalog__films-card">
+          <div className="small-film-card__image">
+            <img
+              src="img/we-need-to-talk-about-kevin.jpg"
+              alt="We need to talk about Kevin"
+              width="280"
+              height="175"
+            />
+          </div>
+          <h3 className="small-film-card__title">
+            <a className="small-film-card__link" href="film-page.html">
+              We need to talk about Kevin
+            </a>
+          </h3>
+        </article>
 
         <article className="small-film-card catalog__films-card">
           <div className="small-film-card__image">
-            <img src="img/shutter-island.jpg" alt="Shutter Island" width="280" height="175"/>
+            <img
+              src="img/what-we-do-in-the-shadows.jpg"
+              alt="What We Do in the Shadows"
+              width="280"
+              height="175"
+            />
           </div>
           <h3 className="small-film-card__title">
-            <a className="small-film-card__link" href="film-page.html">Shutter Island</a>
+            <a className="small-film-card__link" href="film-page.html">
+              What We Do in the Shadows
+            </a>
+          </h3>
+        </article>
+
+        <article className="small-film-card catalog__films-card">
+          <div className="small-film-card__image">
+            <img
+              src="img/revenant.jpg"
+              alt="Revenant"
+              width="280"
+              height="175"
+            />
+          </div>
+          <h3 className="small-film-card__title">
+            <a className="small-film-card__link" href="film-page.html">
+              Revenant
+            </a>
+          </h3>
+        </article>
+
+        <article className="small-film-card catalog__films-card">
+          <div className="small-film-card__image">
+            <img
+              src="img/johnny-english.jpg"
+              alt="Johnny English"
+              width="280"
+              height="175"
+            />
+          </div>
+          <h3 className="small-film-card__title">
+            <a className="small-film-card__link" href="film-page.html">
+              Johnny English
+            </a>
+          </h3>
+        </article>
+
+        <article className="small-film-card catalog__films-card">
+          <div className="small-film-card__image">
+            <img
+              src="img/shutter-island.jpg"
+              alt="Shutter Island"
+              width="280"
+              height="175"
+            />
+          </div>
+          <h3 className="small-film-card__title">
+            <a className="small-film-card__link" href="film-page.html">
+              Shutter Island
+            </a>
           </h3>
         </article>
       </div>
     </section>
-    <Footer/>
+    <Footer />
   </div>
 );

@@ -1,6 +1,6 @@
 import { FilmCard } from '../../Components/FilmCard/FilmCard.tsx';
 import { Footer } from '../../Components/Footer/Footer.tsx';
-import {Header} from '../../Components/Header/Header.tsx';
+import { Header } from '../../Components/Header/Header.tsx';
 
 const FILM_COUNT = 20;
 

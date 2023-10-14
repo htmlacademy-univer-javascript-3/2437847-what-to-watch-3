@@ -9,7 +9,9 @@ export const FilmCard = () => (
       />
     </div>
     <h3 className="small-film-card__title">
-      <a className="small-film-card__link" href="film-page.html">We need to talk about Kevin</a>
+      <a className="small-film-card__link" href="film-page.html">
+        We need to talk about Kevin
+      </a>
     </h3>
   </article>
 );
