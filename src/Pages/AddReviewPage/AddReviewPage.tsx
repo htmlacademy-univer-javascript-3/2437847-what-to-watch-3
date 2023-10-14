@@ -159,7 +159,7 @@ export const AddReviewPage = () => (
             name="review-text"
             id="review-text"
             placeholder="Review text"
-          ></textarea>
+          />
           <div className="add-review__submit">
             <button className="add-review__btn" type="submit">
               Post
