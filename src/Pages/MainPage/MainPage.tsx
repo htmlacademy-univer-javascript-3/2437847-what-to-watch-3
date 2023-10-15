@@ -1,16 +1,16 @@
-import { FilmCard } from '../../Components/FilmCard/FilmCard.tsx';
+import { FilmCardProps } from '../../Components/FilmCard/FilmCard.tsx';
 import { Footer } from '../../Components/Footer/Footer.tsx';
 import { Header } from '../../Components/Header/Header.tsx';
-
-const FILM_COUNT = 20;
+import { FilmCardList } from '../../Components/FilmCardList/FilmCardList.tsx';
 
 type MainProps = {
   name: string;
   genre: string;
   releaseDate: number;
+  films: FilmCardProps[];
 };
 
-export const MainPage = ({ name, genre, releaseDate }: MainProps) => (
+export const MainPage = ({ name, genre, releaseDate, films }: MainProps) => (
   <>
     <section className="film-card">
       <div className="film-card__bg">
@@ -118,11 +118,7 @@ export const MainPage = ({ name, genre, releaseDate }: MainProps) => (
           </li>
         </ul>
 
-        <div className="catalog__films-list">
-          {new Array(FILM_COUNT).fill(0).map(() => (
-            <FilmCard key={0} />
-          ))}
-        </div>
+        <FilmCardList films={films} />
 
         <div className="catalog__more">
           <button className="catalog__button" type="button">
