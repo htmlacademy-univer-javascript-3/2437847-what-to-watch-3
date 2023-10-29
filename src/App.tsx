@@ -4,31 +4,43 @@ import { NotFoundPage } from './Pages/NotFoundPage/NotFoundPage.tsx';
 import { SignInPage } from './Pages/SignInPage/SignInPage.tsx';
 import { MyListPage } from './Pages/MyListPage/MyListPage.tsx';
 import { FilmPage } from './Pages/FilmPage/FilmPage.tsx';
-import { AddReviewPage } from './Pages/AddReviewPage/AddReviewPage.tsx';
-import { PlayerPage } from './Pages/PlayerPage/PlayerPage.tsx';
+import {
+  AddReviewPage,
+  AddReviewPageProps,
+} from './Pages/AddReviewPage/AddReviewPage.tsx';
+import { PlayerPage, PlayerPageProps } from './Pages/PlayerPage/PlayerPage.tsx';
 import { PrivateRoute } from './Components/PrivateRoute/PrivateRoute.tsx';
+import { FilmCardProps } from './Components/FilmCard/FilmCard.tsx';
+import { appRoutes } from './appRoutes.ts';
 
 type AppProps = {
   name: string;
   genre: string;
   releaseDate: number;
+  films: FilmCardProps[];
+  review: AddReviewPageProps;
+  player: PlayerPageProps;
 };
 
 export const App = (props: AppProps) => (
   <BrowserRouter>
     <Routes>
-      <Route path="/">
+      <Route path={appRoutes.Main}>
         <Route index element={<MainPage {...props} />} />
-        <Route path="login" element={<SignInPage />} />
-        <Route path="/player/:id" element={<PlayerPage />} />
-        <Route path="films/:id">
-          <Route index element={<FilmPage />} />
-          <Route path="review" element={<AddReviewPage />} />
-        </Route>
+        <Route path={appRoutes.SignIn} element={<SignInPage />} />
+        <Route
+          path={appRoutes.Player(':id')}
+          element={<PlayerPage {...props.player} />}
+        />
+        <Route path={appRoutes.Film(':id')} element={<FilmPage />} />
+        <Route
+          path={appRoutes.AddReview(':id')}
+          element={<AddReviewPage {...props.review} />}
+        />
       </Route>
 
       <Route element={<PrivateRoute />}>
-        <Route path="mylist" element={<MyListPage />} />
+        <Route path="mylist" element={<MyListPage films={props.films} />} />
       </Route>
 
       <Route path="*" element={<NotFoundPage />} />

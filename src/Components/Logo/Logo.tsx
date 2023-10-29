@@ -1,4 +1,6 @@
 import classNames from 'classnames';
+import { Link } from 'react-router-dom';
+import { appRoutes } from '../../appRoutes.ts';
 
 type LogoProps = {
   isLight?: boolean;
@@ -6,8 +8,8 @@ type LogoProps = {
 
 export const Logo = ({ isLight }: LogoProps) => (
   <div className="logo">
-    <a
-      href="#"
+    <Link
+      to={appRoutes.Main}
       className={classNames(
         'logo__link',
         isLight ? 'logo__link--light' : undefined,
@@ -16,6 +18,6 @@ export const Logo = ({ isLight }: LogoProps) => (
       <span className="logo__letter logo__letter--1">W</span>
       <span className="logo__letter logo__letter--2">T</span>
       <span className="logo__letter logo__letter--3">W</span>
-    </a>
+    </Link>
   </div>
 );
