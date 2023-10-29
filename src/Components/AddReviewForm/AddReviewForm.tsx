@@ -1,5 +1,5 @@
 import { Rating } from '../Rating/Rating.tsx';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 export type ReviewForm = {
   rating: number;
@@ -12,13 +12,19 @@ export const AddReviewForm = () => {
     comment: '',
   });
 
+  const handleChange = useCallback(
+    (nextValue: Partial<ReviewForm>) => {
+      setReviewForm((prevValue) => prevValue && { ...prevValue, ...nextValue });
+    },
+    [setReviewForm],
+  );
+
   return (
     <div className="add-review">
       <form action="#" className="add-review__form">
         <Rating
           onClick={(value: number) => {
-            setReviewForm({
-              ...reviewForm,
+            handleChange({
               rating: value,
             });
           }}
@@ -31,8 +37,7 @@ export const AddReviewForm = () => {
             placeholder="Review text"
             value={reviewForm.comment}
             onChange={(e) => {
-              setReviewForm({
-                ...reviewForm,
+              handleChange({
                 comment: e.target.value,
               });
             }}
