@@ -1,17 +1,34 @@
-import { ReactElement, useEffect, useRef } from 'react';
+import { ReactElement, useEffect, useRef, useState } from 'react';
 
 export type PlayerProps = {
   videoSrc: string;
   imgSrc: string;
-  isPlaying: boolean;
+  isHovered: boolean;
 };
 
 export function PreviewPlayer({
   videoSrc,
   imgSrc,
-  isPlaying,
+  isHovered,
 }: PlayerProps): ReactElement {
   const playerRef = useRef<HTMLVideoElement | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  useEffect(() => {
+    if (!isHovered) {
+      return;
+    }
+
+    const interval = setInterval(() => {
+      setIsPlaying(true);
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+      setIsPlaying(false);
+    };
+  }, [isHovered]);
+
   useEffect(() => {
     if (playerRef.current) {
       if (isPlaying) {

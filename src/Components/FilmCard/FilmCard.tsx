@@ -11,27 +11,23 @@ export type FilmCardProps = {
 };
 
 export const FilmCard = ({ id, name, imgSrc, videoSrc }: FilmCardProps) => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [timer, setTimer] = useState<NodeJS.Timer>();
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <article
       className="small-film-card catalog__films-card"
       onMouseEnter={() => {
-        const interval = setInterval(() => {
-          setIsPlaying(true);
-        }, 1000);
-        setTimer(interval);
+        setIsHovered(true);
       }}
       onMouseLeave={() => {
-        clearInterval(timer);
-        setIsPlaying(false);
+        setIsHovered(false);
       }}
     >
       <div className="small-film-card__image">
         <PreviewPlayer
           imgSrc={imgSrc}
           videoSrc={videoSrc}
-          isPlaying={isPlaying}
+          isHovered={isHovered}
         />
       </div>
       <h3 className="small-film-card__title">
