@@ -1,8 +1,8 @@
-import { ReactNode } from 'react';
+import { ReactElement } from 'react';
 
 export type TabProps = {
   name: string;
-  children: ReactNode;
+  content: ReactElement;
 };
 
-export const Tab = ({ children }: TabProps) => children;
+export const Tab = ({ content }: TabProps): ReactElement => content;

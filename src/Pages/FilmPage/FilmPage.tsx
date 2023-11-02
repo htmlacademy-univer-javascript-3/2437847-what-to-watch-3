@@ -75,15 +75,9 @@ export const FilmPage = () => {
 
             <div className="film-card__desc">
               <Tabs>
-                <Tab name="Overview">
-                  <OverviewTab />
-                </Tab>
-                <Tab name="Details">
-                  <DetailsTab />
-                </Tab>
-                <Tab name="Reviews">
-                  <ReviewsTab />
-                </Tab>
+                <Tab name="Overview" content={<OverviewTab />} />
+                <Tab name="Details" content={<DetailsTab />} />
+                <Tab name="Reviews" content={<ReviewsTab />} />
               </Tabs>
             </div>
           </div>
