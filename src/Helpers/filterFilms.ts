@@ -1,4 +1,4 @@
-import { FilmType } from '../Types/Film.ts';
+import { FilmType } from '../Types/film.ts';
 
 export const filterFilms = (
   films: Array<FilmType>,
