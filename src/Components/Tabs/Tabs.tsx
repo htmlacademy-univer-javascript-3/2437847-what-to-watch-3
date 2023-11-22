@@ -1,6 +1,7 @@
 import { TabProps } from './Tab.tsx';
 import { ReactElement, useState } from 'react';
 import classNames from 'classnames';
+import { ButtonStyle } from '../../Helpers/ButtonStyle.ts';
 
 type TabsProps = {
   children: ReactElement<TabProps>[];
@@ -15,14 +16,13 @@ export const Tabs = ({ children }: TabsProps) => {
           {children.map((tab) => (
             <li
               key={tab.props.name}
-              className={classNames({
-                'film-nav__item': true,
+              className={classNames('film-nav__item', {
                 'film-nav__item--active':
                   activeTab.props.name === tab.props.name,
               })}
             >
               <button
-                style={{ background: 'transparent', border: 'none' }}
+                style={ButtonStyle}
                 className="film-nav__link"
                 onClick={() => {
                   setActiveTab(tab);

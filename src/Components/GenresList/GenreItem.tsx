@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { useAppDispatch } from '../../Hools/store.ts';
 import { setGenre } from '../../Store/action.ts';
+import { ButtonStyle } from '../../Helpers/ButtonStyle.ts';
 
 type GenreItemProps = {
   genre: string;
@@ -16,16 +17,15 @@ export const GenreItem = ({ genre, isActive }: GenreItemProps) => {
         'catalog__genres-item--active': isActive,
       })}
     >
-      <a
-        href="#"
+      <button
+        style={ButtonStyle}
         className="catalog__genres-link"
-        onClick={(event) => {
+        onClick={() => {
           dispatch(setGenre(genre));
-          event.preventDefault();
         }}
       >
         {genre}
-      </a>
+      </button>
     </li>
   );
 };

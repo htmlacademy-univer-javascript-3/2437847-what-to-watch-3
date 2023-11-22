@@ -5,3 +5,5 @@ export type FilmType = {
   genre: string;
   videoSrc: string;
 };
+
+export const ALL_GENRES = 'All genres';
