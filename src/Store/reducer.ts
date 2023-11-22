@@ -1,16 +1,15 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { setFilms, setGenre } from './action.ts';
-import { FILMS } from '../Mocks/Films.ts';
+import { setFilms, setGenre, setLoadingFilms } from './actions.ts';
 import { ALL_GENRES, FilmType } from '../Types/film.ts';
 
 type state = {
   currentGenre: string;
-  allFilms: Array<FilmType>;
+  allFilms: { isLoading: boolean; isError: boolean; films: Array<FilmType> };
 };
 
 const initialState: state = {
   currentGenre: ALL_GENRES,
-  allFilms: FILMS,
+  allFilms: { isLoading: false, isError: false, films: [] },
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -19,7 +18,10 @@ const reducer = createReducer(initialState, (builder) => {
       state.currentGenre = value.payload;
     })
     .addCase(setFilms, (state, value) => {
-      state.allFilms = value.payload;
+      state.allFilms.films = value.payload;
+    })
+    .addCase(setLoadingFilms, (state, value) => {
+      state.allFilms.isLoading = value.payload;
     });
 });
 
