@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { setFilms, setGenre } from './action.ts';
 import { FILMS } from '../Mocks/Films.ts';
-import { FilmType } from '../Types/film.ts';
+import { ALL_GENRES, FilmType } from '../Types/film.ts';
 
 type state = {
   currentGenre: string;
@@ -9,7 +9,7 @@ type state = {
 };
 
 const initialState: state = {
-  currentGenre: 'All genres',
+  currentGenre: ALL_GENRES,
   allFilms: FILMS,
 };
 

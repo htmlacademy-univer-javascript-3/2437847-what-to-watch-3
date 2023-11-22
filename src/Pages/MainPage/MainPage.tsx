@@ -8,7 +8,7 @@ import { GenresList } from '../../Components/GenresList/GenresList.tsx';
 import { useCallback, useState } from 'react';
 import { ShowMoreButton } from '../../Components/ShowMoreButton/ShowMoreButton.tsx';
 
-const FILM_STEPS = 8;
+const FILMS_PER_PAGE = 8;
 
 type MainProps = {
   name: string;
@@ -17,12 +17,13 @@ type MainProps = {
 };
 
 export const MainPage = ({ name, genre, releaseDate }: MainProps) => {
-  const { allFilms, currentGenre } = useAppSelector((state) => state);
+  const allFilms = useAppSelector((state) => state.allFilms);
+  const currentGenre = useAppSelector((state) => state.currentGenre);
   const films = filterFilms(allFilms, currentGenre);
   const genres = extractAllGenres(allFilms);
-  const [countFilms, setCountFilms] = useState(FILM_STEPS);
+  const [countFilms, setCountFilms] = useState(FILMS_PER_PAGE);
   const handleShowMore = useCallback(() => {
-    setCountFilms((prev) => prev + FILM_STEPS);
+    setCountFilms((prev) => prev + FILMS_PER_PAGE);
   }, [setCountFilms]);
 
   return (
