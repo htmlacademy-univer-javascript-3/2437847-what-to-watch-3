@@ -1,7 +1,12 @@
-import { useRef } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
+import { AuthorizationStatus } from '../../Types/auth.ts';
+import { useAuthorizationStatus } from '../../Store/selectors.ts';
 
 export const PrivateRoute = () => {
-  const hasAccess = useRef(true);
-  return hasAccess.current ? <Outlet /> : <Navigate to={'/login'} />;
+  const authStatus = useAuthorizationStatus();
+  return authStatus === AuthorizationStatus.Auth ? (
+    <Outlet />
+  ) : (
+    <Navigate to={'/login'} />
+  );
 };

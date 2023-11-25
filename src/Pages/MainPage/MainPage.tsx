@@ -1,7 +1,7 @@
 import { Footer } from '../../Components/Footer/Footer.tsx';
 import { Header } from '../../Components/Header/Header.tsx';
 import { FilmCardList } from '../../Components/FilmCardList/FilmCardList.tsx';
-import { useAppDispatch, useAppSelector } from '../../Hools/store.ts';
+import { useAppDispatch } from '../../Hools/store.ts';
 import { filterFilms } from '../../Helpers/filterFilms.ts';
 import { extractAllGenres } from '../../Helpers/extractAllGenres.ts';
 import { GenresList } from '../../Components/GenresList/GenresList.tsx';
@@ -9,6 +9,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { ShowMoreButton } from '../../Components/ShowMoreButton/ShowMoreButton.tsx';
 import { fetchFilmsAction } from '../../Store/apiActions.ts';
 import { Loader } from '../../Components/Loader/Loader.tsx';
+import { useCurrentGenre, useFilms } from '../../Store/selectors.ts';
 
 const FILMS_PER_PAGE = 8;
 
@@ -24,10 +25,8 @@ export const MainPage = ({ name, genre, releaseDate }: MainProps) => {
     dispatch(fetchFilmsAction());
   }, [dispatch]);
 
-  const { films: allFilms, isLoading } = useAppSelector(
-    (state) => state.allFilms,
-  );
-  const currentGenre = useAppSelector((state) => state.currentGenre);
+  const { films: allFilms, isLoading } = useFilms();
+  const currentGenre = useCurrentGenre();
   const films = filterFilms(allFilms, currentGenre);
   const genres = extractAllGenres(allFilms);
   const [countFilms, setCountFilms] = useState(FILMS_PER_PAGE);
