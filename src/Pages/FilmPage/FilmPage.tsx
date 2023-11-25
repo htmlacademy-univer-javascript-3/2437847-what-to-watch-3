@@ -9,12 +9,10 @@ import { Link, useParams } from 'react-router-dom';
 import { useFilm } from '../../Mocks/useFilm.ts';
 import { appRoutes } from '../../appRoutes.ts';
 import { FilmCardList } from '../../Components/FilmCardList/FilmCardList.tsx';
-import { useFilms } from '../../Mocks/useFilms.tsx';
 
 export const FilmPage = () => {
   const { id } = useParams();
   const film = useFilm({ id: Number(id) });
-  const films = useFilms();
 
   return (
     <div>
@@ -87,7 +85,7 @@ export const FilmPage = () => {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <FilmCardList films={films} />
+          <FilmCardList films={[]} />
         </section>
         <Footer />
       </div>
