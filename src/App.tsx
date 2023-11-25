@@ -10,14 +10,12 @@ import {
 } from './Pages/AddReviewPage/AddReviewPage.tsx';
 import { PlayerPage, PlayerPageProps } from './Pages/PlayerPage/PlayerPage.tsx';
 import { PrivateRoute } from './Components/PrivateRoute/PrivateRoute.tsx';
-import { FilmCardProps } from './Components/FilmCard/FilmCard.tsx';
 import { appRoutes } from './appRoutes.ts';
 
 type AppProps = {
   name: string;
   genre: string;
   releaseDate: number;
-  films: FilmCardProps[];
   review: AddReviewPageProps;
   player: PlayerPageProps;
 };
@@ -40,7 +38,7 @@ export const App = (props: AppProps) => (
       </Route>
 
       <Route element={<PrivateRoute />}>
-        <Route path="mylist" element={<MyListPage films={props.films} />} />
+        <Route path="mylist" element={<MyListPage films={[]} />} />
       </Route>
 
       <Route path="*" element={<NotFoundPage />} />

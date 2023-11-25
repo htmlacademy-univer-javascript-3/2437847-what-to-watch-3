@@ -1,12 +1,14 @@
 import { Footer } from '../../Components/Footer/Footer.tsx';
 import { Header } from '../../Components/Header/Header.tsx';
 import { FilmCardList } from '../../Components/FilmCardList/FilmCardList.tsx';
-import { useAppSelector } from '../../Hools/store.ts';
+import { useAppDispatch, useAppSelector } from '../../Hools/store.ts';
 import { filterFilms } from '../../Helpers/filterFilms.ts';
 import { extractAllGenres } from '../../Helpers/extractAllGenres.ts';
 import { GenresList } from '../../Components/GenresList/GenresList.tsx';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { ShowMoreButton } from '../../Components/ShowMoreButton/ShowMoreButton.tsx';
+import { fetchFilmsAction } from '../../Store/apiActions.ts';
+import { Loader } from '../../Components/Loader/Loader.tsx';
 
 const FILMS_PER_PAGE = 8;
 
@@ -17,7 +19,14 @@ type MainProps = {
 };
 
 export const MainPage = ({ name, genre, releaseDate }: MainProps) => {
-  const allFilms = useAppSelector((state) => state.allFilms);
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(fetchFilmsAction());
+  }, [dispatch]);
+
+  const { films: allFilms, isLoading } = useAppSelector(
+    (state) => state.allFilms,
+  );
   const currentGenre = useAppSelector((state) => state.currentGenre);
   const films = filterFilms(allFilms, currentGenre);
   const genres = extractAllGenres(allFilms);
@@ -88,11 +97,13 @@ export const MainPage = ({ name, genre, releaseDate }: MainProps) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <GenresList genres={genres} activeGenre={currentGenre} />
-          <FilmCardList films={films.slice(0, countFilms)} />
-          {countFilms < films.length && (
-            <ShowMoreButton onClick={handleShowMore} />
-          )}
+          <Loader isLoading={isLoading}>
+            <GenresList genres={genres} activeGenre={currentGenre} />
+            <FilmCardList films={films.slice(0, countFilms)} />
+            {countFilms < films.length && (
+              <ShowMoreButton onClick={handleShowMore} />
+            )}
+          </Loader>
         </section>
         <Footer />
       </div>

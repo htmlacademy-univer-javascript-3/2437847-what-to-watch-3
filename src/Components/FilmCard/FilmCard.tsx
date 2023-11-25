@@ -6,11 +6,16 @@ import { PreviewPlayer } from './PreviewPlayer.tsx';
 export type FilmCardProps = {
   id: number;
   name: string;
-  imgSrc: string;
-  videoSrc: string;
+  previewImage: string;
+  previewVideoLink: string;
 };
 
-export const FilmCard = ({ id, name, imgSrc, videoSrc }: FilmCardProps) => {
+export const FilmCard = ({
+  id,
+  name,
+  previewImage,
+  previewVideoLink,
+}: FilmCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -25,8 +30,8 @@ export const FilmCard = ({ id, name, imgSrc, videoSrc }: FilmCardProps) => {
     >
       <div className="small-film-card__image">
         <PreviewPlayer
-          imgSrc={imgSrc}
-          videoSrc={videoSrc}
+          imgSrc={previewImage}
+          videoSrc={previewVideoLink}
           isHovered={isHovered}
         />
       </div>

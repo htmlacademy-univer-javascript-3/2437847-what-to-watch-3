@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { useAppDispatch } from '../../Hools/store.ts';
-import { setGenre } from '../../Store/action.ts';
+import { setGenre } from '../../Store/actions.ts';
 import { ButtonStyle } from '../../Helpers/ButtonStyle.ts';
 
 type GenreItemProps = {
