@@ -7,10 +7,13 @@ import { Provider } from 'react-redux';
 import { store } from './Store';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { checkAuthAction } from './Store/apiActions.ts';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
+
+store.dispatch(checkAuthAction());
 
 root.render(
   <React.StrictMode>
