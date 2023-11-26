@@ -20,7 +20,7 @@ export const setAvatarLink = createAction<string>('user/setAvatarLink');
 
 export const setFilm = createAction<FilmType>('films/setFilm');
 export const setLoadingFilm = createAction<boolean>('films/setLoadingFilm');
-export const setErrorMessageFilm = createAction<string>(
+export const setErrorMessageFilm = createAction<string | undefined>(
   'films/setErrorMessage',
 );
 

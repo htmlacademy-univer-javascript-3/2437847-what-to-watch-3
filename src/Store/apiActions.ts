@@ -1,4 +1,4 @@
-import { AxiosInstance } from 'axios';
+import { AxiosError, AxiosInstance } from 'axios';
 import { AppDispatch, State } from '../Types/state.ts';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
@@ -24,6 +24,7 @@ import {
 import { ApiRoutes } from '../Services/apiRoutes.ts';
 import { AuthData, AuthorizationStatus, UserData } from '../Types/auth.ts';
 import { dropToken, saveToken } from '../Services/token.ts';
+import { ErrorType } from '../Types/error.ts';
 
 export const fetchFilmsAction = createAsyncThunk<
   void,
@@ -55,10 +56,10 @@ export const fetchFilmAction = createAsyncThunk<
     dispatch(setLoadingFilm(false));
     dispatch(setErrorMessageFilm(''));
     dispatch(setFilm(data));
-  } catch (err: any) {
-    console.log(err);
+  } catch (error) {
+    const err = error as AxiosError<ErrorType>;
     dispatch(setLoadingFilm(false));
-    dispatch(setErrorMessageFilm(err.response.data.message));
+    dispatch(setErrorMessageFilm(err.response?.data.message));
   }
 });
 
@@ -95,14 +96,19 @@ export const fetchCommentsAction = createAsyncThunk<
 });
 
 export const postCommentAction = createAsyncThunk<
-  string,
+  boolean,
   { filmId: string } & AddCommentType,
   {
     state: State;
     extra: AxiosInstance;
   }
 >('data/postComment', async ({ filmId, ...comment }, { extra: api }) => {
-  await api.post<CommentType>(ApiRoutes.Comments(filmId), comment);
+  try {
+    await api.post<CommentType>(ApiRoutes.Comments(filmId), comment);
+    return true;
+  } catch {
+    return false;
+  }
 });
 
 export const checkAuthAction = createAsyncThunk<

@@ -27,16 +27,17 @@ export const AddReviewForm = () => {
   );
 
   const handleSubmit = useCallback(
-    async (e: MouseEvent<HTMLElement>) => {
+    (e: MouseEvent<HTMLElement>) => {
       e.preventDefault();
-      const result = await dispatch(
-        postCommentAction({ filmId: id!, ...reviewForm }),
+      dispatch(postCommentAction({ filmId: id || '', ...reviewForm })).then(
+        (result) => {
+          if (result.payload) {
+            navigate(appRoutes.Film(id));
+          }
+        },
       );
-      if (!(result as any).error) {
-        navigate(appRoutes.Film(id!));
-      }
     },
-    [dispatch, reviewForm, id],
+    [dispatch, reviewForm, id, navigate],
   );
 
   return (
