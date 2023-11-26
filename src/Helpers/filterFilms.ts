@@ -1,9 +1,9 @@
-import { ALL_GENRES, FilmType } from '../Types/film.ts';
+import { ALL_GENRES, FilmListType } from '../Types/film.ts';
 
 export const filterFilms = (
-  films: Array<FilmType>,
+  films: Array<FilmListType>,
   genre: string,
-): Array<FilmType> => {
+): Array<FilmListType> => {
   if (genre === ALL_GENRES) {
     return films;
   }

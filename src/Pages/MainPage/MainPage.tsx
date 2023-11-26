@@ -1,15 +1,18 @@
 import { Footer } from '../../Components/Footer/Footer.tsx';
 import { Header } from '../../Components/Header/Header.tsx';
 import { FilmCardList } from '../../Components/FilmCardList/FilmCardList.tsx';
-import { useAppDispatch } from '../../Hools/store.ts';
 import { filterFilms } from '../../Helpers/filterFilms.ts';
 import { extractAllGenres } from '../../Helpers/extractAllGenres.ts';
 import { GenresList } from '../../Components/GenresList/GenresList.tsx';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { ShowMoreButton } from '../../Components/ShowMoreButton/ShowMoreButton.tsx';
-import { fetchFilmsAction } from '../../Store/apiActions.ts';
 import { Loader } from '../../Components/Loader/Loader.tsx';
-import { useCurrentGenre, useFilms } from '../../Store/selectors.ts';
+import {
+  useAuthorizationStatusSelector,
+  useCurrentGenreSelector,
+} from '../../Store/selectors.ts';
+import { useFilms } from '../../Hooks/films.ts';
+import { AuthorizationStatus } from '../../Types/auth.ts';
 
 const FILMS_PER_PAGE = 8;
 
@@ -20,16 +23,13 @@ type MainProps = {
 };
 
 export const MainPage = ({ name, genre, releaseDate }: MainProps) => {
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    dispatch(fetchFilmsAction());
-  }, [dispatch]);
-
   const { films: allFilms, isLoading } = useFilms();
-  const currentGenre = useCurrentGenre();
+  const currentGenre = useCurrentGenreSelector();
   const films = filterFilms(allFilms, currentGenre);
   const genres = extractAllGenres(allFilms);
+  const authStatus = useAuthorizationStatusSelector();
   const [countFilms, setCountFilms] = useState(FILMS_PER_PAGE);
+
   const handleShowMore = useCallback(() => {
     setCountFilms((prev) => prev + FILMS_PER_PAGE);
   }, [setCountFilms]);
@@ -76,16 +76,18 @@ export const MainPage = ({ name, genre, releaseDate }: MainProps) => {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button
-                  className="btn btn--list film-card__button"
-                  type="button"
-                >
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                  <span className="film-card__count">9</span>
-                </button>
+                {authStatus === AuthorizationStatus.Auth && (
+                  <button
+                    className="btn btn--list film-card__button"
+                    type="button"
+                  >
+                    <svg viewBox="0 0 19 20" width="19" height="20">
+                      <use xlinkHref="#add"></use>
+                    </svg>
+                    <span>My list</span>
+                    <span className="film-card__count">9</span>
+                  </button>
+                )}
               </div>
             </div>
           </div>

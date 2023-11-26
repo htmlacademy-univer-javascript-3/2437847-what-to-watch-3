@@ -2,7 +2,7 @@ export const appRoutes = {
   Main: '/',
   SignIn: '/login',
   MyList: '/mylist',
-  Film: (id: number | string) => `/films/${id}`,
+  Film: (id: number | string | undefined) => `/films/${id}`,
   Player: (id: number | string) => `/player/${id}`,
   AddReview: (id: number | string) => `/films/${id}/review`,
 };

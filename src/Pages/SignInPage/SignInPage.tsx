@@ -1,6 +1,6 @@
 import { Footer } from '../../Components/Footer/Footer.tsx';
 import { Logo } from '../../Components/Logo/Logo.tsx';
-import { useAppDispatch } from '../../Hools/store.ts';
+import { useAppDispatch } from '../../Hooks/store.ts';
 import { useState, MouseEvent } from 'react';
 import { loginAction } from '../../Store/apiActions.ts';
 import { useNavigate } from 'react-router-dom';

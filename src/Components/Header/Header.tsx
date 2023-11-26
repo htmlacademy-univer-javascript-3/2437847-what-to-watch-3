@@ -1,13 +1,13 @@
 import { Logo } from '../Logo/Logo.tsx';
 import { MouseEvent, ReactNode, useCallback } from 'react';
-import { useAppDispatch } from '../../Hools/store.ts';
+import { useAppDispatch } from '../../Hooks/store.ts';
 import { AuthorizationStatus } from '../../Types/auth.ts';
 import { Link } from 'react-router-dom';
 import { appRoutes } from '../../appRoutes.ts';
 import { logoutAction } from '../../Store/apiActions.ts';
 import {
-  useAuthorizationStatus,
-  useAvatarLink,
+  useAuthorizationStatusSelector,
+  useAvatarLinkSelector,
 } from '../../Store/selectors.ts';
 
 type HeaderProps = {
@@ -15,8 +15,8 @@ type HeaderProps = {
 };
 
 export const Header = ({ children }: HeaderProps) => {
-  const authStatus = useAuthorizationStatus();
-  const avatarLink = useAvatarLink();
+  const authStatus = useAuthorizationStatusSelector();
+  const avatarLink = useAvatarLinkSelector();
   const dispatch = useAppDispatch();
   const signOutHandler = useCallback(
     (event: MouseEvent<HTMLElement>) => {
