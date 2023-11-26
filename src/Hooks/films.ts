@@ -4,12 +4,14 @@ import {
   fetchCommentsAction,
   fetchFilmAction,
   fetchFilmsAction,
+  fetchPromoFilmAction,
   fetchSimilarFilmsAction,
 } from '../Store/apiActions.ts';
 import {
   useAllFilmsSelector,
   useCommentsSelector,
   useCurrentFilmSelector,
+  usePromoFilmSelector,
   useSimilarFilmsSelector,
 } from '../Store/selectors.ts';
 
@@ -20,8 +22,8 @@ export const useFilms = () => {
     dispatch(fetchFilmsAction());
   }, [dispatch]);
 
-  const { films, isLoading, isError } = useAllFilmsSelector();
-  return { films, isLoading, isError };
+  const { films, isLoading, error } = useAllFilmsSelector();
+  return { films, isLoading, error };
 };
 
 export const useFilm = (id?: string) => {
@@ -32,6 +34,17 @@ export const useFilm = (id?: string) => {
   }, [dispatch, id]);
 
   const { film, isLoading, error } = useCurrentFilmSelector();
+  return { film, isLoading, error };
+};
+
+export const usePromoFilm = () => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchPromoFilmAction());
+  }, [dispatch]);
+
+  const { film, isLoading, error } = usePromoFilmSelector();
   return { film, isLoading, error };
 };
 

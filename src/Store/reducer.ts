@@ -10,7 +10,9 @@ import {
   setLoadingComments,
   setLoadingFilm,
   setLoadingFilms,
+  setLoadingPromoFilm,
   setLoadingSimilarFilms,
+  setPromoFilm,
   setSimilarFilms,
 } from './actions.ts';
 import {
@@ -18,6 +20,7 @@ import {
   CommentType,
   FilmListType,
   FilmType,
+  PromoFilmType,
   SimilarFilmType,
 } from '../Types/film.ts';
 import { AuthorizationStatus } from '../Types/auth.ts';
@@ -26,13 +29,14 @@ type state = {
   currentGenre: string;
   allFilms: {
     isLoading: boolean;
-    isError: boolean;
+    error?: string;
     films: Array<FilmListType>;
   };
   user: {
     avatarLink: string;
     authorizationStatus: AuthorizationStatus;
   };
+  promoFilm: { isLoading: boolean; error?: string; film?: PromoFilmType };
   currentFilm: { isLoading: boolean; error?: string; film?: FilmType };
   similarFilms: {
     isLoading: boolean;
@@ -48,11 +52,12 @@ type state = {
 
 const initialState: state = {
   currentGenre: ALL_GENRES,
-  allFilms: { isLoading: false, isError: false, films: [] },
+  allFilms: { isLoading: false, films: [] },
   user: {
     authorizationStatus: AuthorizationStatus.Unknown,
     avatarLink: '',
   },
+  promoFilm: { isLoading: false, film: undefined },
   currentFilm: { isLoading: false, film: undefined },
   similarFilms: { isLoading: false, films: [] },
   comments: { isLoading: false, comments: [] },
@@ -95,6 +100,12 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setErrorMessageFilm, (state, value) => {
       state.currentFilm.error = value.payload;
+    })
+    .addCase(setLoadingPromoFilm, (state, value) => {
+      state.promoFilm.isLoading = value.payload;
+    })
+    .addCase(setPromoFilm, (state, value) => {
+      state.promoFilm.film = value.payload;
     });
 });
 

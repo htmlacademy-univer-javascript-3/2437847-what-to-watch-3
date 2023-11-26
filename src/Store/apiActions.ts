@@ -11,7 +11,9 @@ import {
   setLoadingComments,
   setLoadingFilm,
   setLoadingFilms,
+  setLoadingPromoFilm,
   setLoadingSimilarFilms,
+  setPromoFilm,
   setSimilarFilms,
 } from './actions.ts';
 import {
@@ -19,6 +21,7 @@ import {
   CommentType,
   FilmListType,
   FilmType,
+  PromoFilmType,
   SimilarFilmType,
 } from '../Types/film.ts';
 import { ApiRoutes } from '../Services/apiRoutes.ts';
@@ -61,6 +64,21 @@ export const fetchFilmAction = createAsyncThunk<
     dispatch(setLoadingFilm(false));
     dispatch(setErrorMessageFilm(err.response?.data.message));
   }
+});
+
+export const fetchPromoFilmAction = createAsyncThunk<
+  void,
+  undefined,
+  {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+  }
+>('data/fetchPromoFilm', async (_arg, { dispatch, extra: api }) => {
+  dispatch(setLoadingPromoFilm(true));
+  const { data } = await api.get<PromoFilmType>(ApiRoutes.PromoFilm);
+  dispatch(setLoadingPromoFilm(false));
+  dispatch(setPromoFilm(data));
 });
 
 export const fetchSimilarFilmsAction = createAsyncThunk<

@@ -10,9 +10,6 @@ import { PrivateRoute } from './Components/PrivateRoute/PrivateRoute.tsx';
 import { appRoutes } from './appRoutes.ts';
 
 type AppProps = {
-  name: string;
-  genre: string;
-  releaseDate: number;
   player: PlayerPageProps;
 };
 
@@ -20,7 +17,7 @@ export const App = (props: AppProps) => (
   <BrowserRouter>
     <Routes>
       <Route path={appRoutes.Main}>
-        <Route index element={<MainPage {...props} />} />
+        <Route index element={<MainPage />} />
         <Route path={appRoutes.SignIn} element={<SignInPage />} />
         <Route
           path={appRoutes.Player(':id')}

@@ -24,6 +24,17 @@ export type FilmType = {
   isFavorite: boolean;
 };
 
+export type PromoFilmType = {
+  id: string;
+  name: string;
+  posterImage: string;
+  backgroundImage: string;
+  videoLink: string;
+  genre: string;
+  released: number;
+  isFavorite: boolean;
+};
+
 export type SimilarFilmType = {
   id: string;
   name: string;

@@ -11,19 +11,14 @@ import {
   useAuthorizationStatusSelector,
   useCurrentGenreSelector,
 } from '../../Store/selectors.ts';
-import { useFilms } from '../../Hooks/films.ts';
+import { useFilms, usePromoFilm } from '../../Hooks/films.ts';
 import { AuthorizationStatus } from '../../Types/auth.ts';
 
 const FILMS_PER_PAGE = 8;
 
-type MainProps = {
-  name: string;
-  genre: string;
-  releaseDate: number;
-};
-
-export const MainPage = ({ name, genre, releaseDate }: MainProps) => {
+export const MainPage = () => {
   const { films: allFilms, isLoading } = useFilms();
+  const { film: promoFilm } = usePromoFilm();
   const currentGenre = useCurrentGenreSelector();
   const films = filterFilms(allFilms, currentGenre);
   const genres = extractAllGenres(allFilms);
@@ -38,10 +33,7 @@ export const MainPage = ({ name, genre, releaseDate }: MainProps) => {
     <>
       <section className="film-card">
         <div className="film-card__bg">
-          <img
-            src="img/bg-the-grand-budapest-hotel.jpg"
-            alt="The Grand Budapest Hotel"
-          />
+          <img src={promoFilm?.backgroundImage} alt={promoFilm?.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -52,18 +44,18 @@ export const MainPage = ({ name, genre, releaseDate }: MainProps) => {
           <div className="film-card__info">
             <div className="film-card__poster">
               <img
-                src="img/the-grand-budapest-hotel-poster.jpg"
-                alt="The Grand Budapest Hotel poster"
+                src={promoFilm?.posterImage}
+                alt={promoFilm?.name}
                 width="218"
                 height="327"
               />
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{name}</h2>
+              <h2 className="film-card__title">{promoFilm?.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{genre}</span>
-                <span className="film-card__year">{releaseDate}</span>
+                <span className="film-card__genre">{promoFilm?.genre}</span>
+                <span className="film-card__year">{promoFilm?.released}</span>
               </p>
 
               <div className="film-card__buttons">

@@ -15,6 +15,9 @@ export const useAllFilmsSelector = () =>
 export const useCurrentFilmSelector = () =>
   useAppSelector((state) => state.currentFilm);
 
+export const usePromoFilmSelector = () =>
+  useAppSelector((state) => state.promoFilm);
+
 export const useSimilarFilmsSelector = () =>
   useAppSelector((state) => state.similarFilms);
 

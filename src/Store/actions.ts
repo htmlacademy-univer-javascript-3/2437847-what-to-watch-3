@@ -3,6 +3,7 @@ import {
   CommentType,
   FilmListType,
   FilmType,
+  PromoFilmType,
   SimilarFilmType,
 } from '../Types/film.ts';
 import { AuthorizationStatus } from '../Types/auth.ts';
@@ -22,6 +23,11 @@ export const setFilm = createAction<FilmType>('films/setFilm');
 export const setLoadingFilm = createAction<boolean>('films/setLoadingFilm');
 export const setErrorMessageFilm = createAction<string | undefined>(
   'films/setErrorMessage',
+);
+
+export const setPromoFilm = createAction<PromoFilmType>('films/setPromoFilm');
+export const setLoadingPromoFilm = createAction<boolean>(
+  'films/setLoadingPromoFilm',
 );
 
 export const setSimilarFilms = createAction<Array<SimilarFilmType>>(
