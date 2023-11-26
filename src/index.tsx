@@ -18,12 +18,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <ToastContainer />
-      <App
-        name={'The Grand Budapest Hotel'}
-        genre={'Drama'}
-        releaseDate={2014}
-        player={PLAYER}
-      />
+      <App player={PLAYER} />
     </Provider>
   </React.StrictMode>,
 );
