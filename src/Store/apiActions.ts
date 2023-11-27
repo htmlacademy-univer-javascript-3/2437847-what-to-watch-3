@@ -46,7 +46,7 @@ export const fetchFilmsAction = createAsyncThunk<
 
 export const fetchFilmAction = createAsyncThunk<
   void,
-  string | undefined,
+  string,
   {
     dispatch: AppDispatch;
     state: State;
@@ -83,7 +83,7 @@ export const fetchPromoFilmAction = createAsyncThunk<
 
 export const fetchSimilarFilmsAction = createAsyncThunk<
   void,
-  string | undefined,
+  string,
   {
     dispatch: AppDispatch;
     state: State;
@@ -100,7 +100,7 @@ export const fetchSimilarFilmsAction = createAsyncThunk<
 
 export const fetchCommentsAction = createAsyncThunk<
   void,
-  string | undefined,
+  string,
   {
     dispatch: AppDispatch;
     state: State;
