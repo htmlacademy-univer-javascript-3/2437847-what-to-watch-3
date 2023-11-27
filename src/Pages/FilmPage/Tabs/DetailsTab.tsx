@@ -1,5 +1,5 @@
-import { useCurrentFilmSelector } from '../../../Store/selectors.ts';
 import { convertToHoursAndMinutes } from '../../../Helpers/RunTime.ts';
+import { useCurrentFilmSelector } from '../../../Store/Film/selectors.ts';
 
 export const DetailsTab = () => {
   const { data } = useCurrentFilmSelector();

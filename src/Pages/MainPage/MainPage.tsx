@@ -7,17 +7,16 @@ import { GenresList } from '../../Components/GenresList/GenresList.tsx';
 import { useCallback, useState } from 'react';
 import { ShowMoreButton } from '../../Components/ShowMoreButton/ShowMoreButton.tsx';
 import { Loader } from '../../Components/Loader/Loader.tsx';
-import {
-  useAuthorizationStatusSelector,
-  useCurrentGenreSelector,
-} from '../../Store/selectors.ts';
 import { useFilms, usePromoFilm } from '../../Hooks/films.ts';
 import { AuthorizationStatus } from '../../Types/auth.ts';
+import { useCurrentGenreSelector } from '../../Store/Films/selectors.ts';
+import { useAuthorizationStatusSelector } from '../../Store/User/selectors.ts';
 
 const FILMS_PER_PAGE = 8;
 
 export const MainPage = () => {
   const { data: allFilms, isLoading } = useFilms();
+  console.log(allFilms);
   const { data: promoFilm } = usePromoFilm();
   const currentGenre = useCurrentGenreSelector();
   const films = filterFilms(allFilms, currentGenre);
@@ -92,8 +91,8 @@ export const MainPage = () => {
 
           <Loader isLoading={isLoading}>
             <GenresList genres={genres} activeGenre={currentGenre} />
-            <FilmCardList films={films.slice(0, countFilms)} />
-            {countFilms < films.length && (
+            <FilmCardList films={films?.slice(0, countFilms)} />
+            {countFilms < films?.length && (
               <ShowMoreButton onClick={handleShowMore} />
             )}
           </Loader>

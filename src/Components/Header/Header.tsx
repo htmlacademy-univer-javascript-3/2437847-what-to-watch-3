@@ -8,7 +8,7 @@ import { logoutAction } from '../../Store/apiActions.ts';
 import {
   useAuthorizationStatusSelector,
   useAvatarLinkSelector,
-} from '../../Store/selectors.ts';
+} from '../../Store/User/selectors.ts';
 
 type HeaderProps = {
   children?: ReactNode;
