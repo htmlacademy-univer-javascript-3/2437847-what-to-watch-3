@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { useAppDispatch } from '../../Hools/store.ts';
+import { useAppDispatch } from '../../Hooks/store.ts';
 import { setGenre } from '../../Store/actions.ts';
 import { ButtonStyle } from '../../Helpers/ButtonStyle.ts';
 

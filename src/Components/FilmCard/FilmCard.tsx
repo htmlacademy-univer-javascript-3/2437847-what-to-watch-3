@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { PreviewPlayer } from './PreviewPlayer.tsx';
 
 export type FilmCardProps = {
-  id: number;
+  id: string;
   name: string;
   previewImage: string;
   previewVideoLink: string;

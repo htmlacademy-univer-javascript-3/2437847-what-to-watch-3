@@ -4,11 +4,24 @@ import { LoaderStyle } from './LoaderStyle.ts';
 
 type LoaderProps = {
   isLoading: boolean;
+  height?: string;
+  backgroundColor?: string;
   children: ReactNode;
 };
-export const Loader = ({ isLoading, children }: LoaderProps) => {
+export const Loader = ({
+  isLoading,
+  height,
+  backgroundColor,
+  children,
+}: LoaderProps) => {
   const loader = (
-    <div style={LoaderStyle}>
+    <div
+      style={{
+        height: height,
+        backgroundColor: backgroundColor,
+        ...LoaderStyle,
+      }}
+    >
       <BallTriangle
         height={100}
         width={100}

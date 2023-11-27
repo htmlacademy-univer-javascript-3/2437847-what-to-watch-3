@@ -4,19 +4,12 @@ import { NotFoundPage } from './Pages/NotFoundPage/NotFoundPage.tsx';
 import { SignInPage } from './Pages/SignInPage/SignInPage.tsx';
 import { MyListPage } from './Pages/MyListPage/MyListPage.tsx';
 import { FilmPage } from './Pages/FilmPage/FilmPage.tsx';
-import {
-  AddReviewPage,
-  AddReviewPageProps,
-} from './Pages/AddReviewPage/AddReviewPage.tsx';
+import { AddReviewPage } from './Pages/AddReviewPage/AddReviewPage.tsx';
 import { PlayerPage, PlayerPageProps } from './Pages/PlayerPage/PlayerPage.tsx';
 import { PrivateRoute } from './Components/PrivateRoute/PrivateRoute.tsx';
 import { appRoutes } from './appRoutes.ts';
 
 type AppProps = {
-  name: string;
-  genre: string;
-  releaseDate: number;
-  review: AddReviewPageProps;
   player: PlayerPageProps;
 };
 
@@ -24,17 +17,14 @@ export const App = (props: AppProps) => (
   <BrowserRouter>
     <Routes>
       <Route path={appRoutes.Main}>
-        <Route index element={<MainPage {...props} />} />
+        <Route index element={<MainPage />} />
         <Route path={appRoutes.SignIn} element={<SignInPage />} />
         <Route
           path={appRoutes.Player(':id')}
           element={<PlayerPage {...props.player} />}
         />
         <Route path={appRoutes.Film(':id')} element={<FilmPage />} />
-        <Route
-          path={appRoutes.AddReview(':id')}
-          element={<AddReviewPage {...props.review} />}
-        />
+        <Route path={appRoutes.AddReview(':id')} element={<AddReviewPage />} />
       </Route>
 
       <Route element={<PrivateRoute />}>

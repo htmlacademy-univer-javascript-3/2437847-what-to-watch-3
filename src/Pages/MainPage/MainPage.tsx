@@ -1,35 +1,30 @@
 import { Footer } from '../../Components/Footer/Footer.tsx';
 import { Header } from '../../Components/Header/Header.tsx';
 import { FilmCardList } from '../../Components/FilmCardList/FilmCardList.tsx';
-import { useAppDispatch } from '../../Hools/store.ts';
 import { filterFilms } from '../../Helpers/filterFilms.ts';
 import { extractAllGenres } from '../../Helpers/extractAllGenres.ts';
 import { GenresList } from '../../Components/GenresList/GenresList.tsx';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { ShowMoreButton } from '../../Components/ShowMoreButton/ShowMoreButton.tsx';
-import { fetchFilmsAction } from '../../Store/apiActions.ts';
 import { Loader } from '../../Components/Loader/Loader.tsx';
-import { useCurrentGenre, useFilms } from '../../Store/selectors.ts';
+import {
+  useAuthorizationStatusSelector,
+  useCurrentGenreSelector,
+} from '../../Store/selectors.ts';
+import { useFilms, usePromoFilm } from '../../Hooks/films.ts';
+import { AuthorizationStatus } from '../../Types/auth.ts';
 
 const FILMS_PER_PAGE = 8;
 
-type MainProps = {
-  name: string;
-  genre: string;
-  releaseDate: number;
-};
-
-export const MainPage = ({ name, genre, releaseDate }: MainProps) => {
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    dispatch(fetchFilmsAction());
-  }, [dispatch]);
-
-  const { films: allFilms, isLoading } = useFilms();
-  const currentGenre = useCurrentGenre();
+export const MainPage = () => {
+  const { data: allFilms, isLoading } = useFilms();
+  const { data: promoFilm } = usePromoFilm();
+  const currentGenre = useCurrentGenreSelector();
   const films = filterFilms(allFilms, currentGenre);
   const genres = extractAllGenres(allFilms);
+  const authStatus = useAuthorizationStatusSelector();
   const [countFilms, setCountFilms] = useState(FILMS_PER_PAGE);
+
   const handleShowMore = useCallback(() => {
     setCountFilms((prev) => prev + FILMS_PER_PAGE);
   }, [setCountFilms]);
@@ -38,10 +33,7 @@ export const MainPage = ({ name, genre, releaseDate }: MainProps) => {
     <>
       <section className="film-card">
         <div className="film-card__bg">
-          <img
-            src="img/bg-the-grand-budapest-hotel.jpg"
-            alt="The Grand Budapest Hotel"
-          />
+          <img src={promoFilm?.backgroundImage} alt={promoFilm?.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -52,18 +44,18 @@ export const MainPage = ({ name, genre, releaseDate }: MainProps) => {
           <div className="film-card__info">
             <div className="film-card__poster">
               <img
-                src="img/the-grand-budapest-hotel-poster.jpg"
-                alt="The Grand Budapest Hotel poster"
+                src={promoFilm?.posterImage}
+                alt={promoFilm?.name}
                 width="218"
                 height="327"
               />
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{name}</h2>
+              <h2 className="film-card__title">{promoFilm?.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{genre}</span>
-                <span className="film-card__year">{releaseDate}</span>
+                <span className="film-card__genre">{promoFilm?.genre}</span>
+                <span className="film-card__year">{promoFilm?.released}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -76,16 +68,18 @@ export const MainPage = ({ name, genre, releaseDate }: MainProps) => {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button
-                  className="btn btn--list film-card__button"
-                  type="button"
-                >
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                  <span className="film-card__count">9</span>
-                </button>
+                {authStatus === AuthorizationStatus.Auth && (
+                  <button
+                    className="btn btn--list film-card__button"
+                    type="button"
+                  >
+                    <svg viewBox="0 0 19 20" width="19" height="20">
+                      <use xlinkHref="#add"></use>
+                    </svg>
+                    <span>My list</span>
+                    <span className="film-card__count">9</span>
+                  </button>
+                )}
               </div>
             </div>
           </div>

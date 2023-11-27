@@ -1,11 +1,16 @@
 import { createAction } from '@reduxjs/toolkit';
-import { FilmType } from '../Types/film.ts';
+import {
+  CommentType,
+  FilmListType,
+  FilmType,
+  PromoFilmType,
+  SimilarFilmType,
+} from '../Types/film.ts';
 import { AuthorizationStatus } from '../Types/auth.ts';
 
 export const setGenre = createAction<string>('films/setGenre');
 
-export const setFilms = createAction<Array<FilmType>>('films/setFilms');
-
+export const setFilms = createAction<Array<FilmListType>>('films/setFilms');
 export const setLoadingFilms = createAction<boolean>('films/setLoadingFilms');
 
 export const setAuthorizationStatus = createAction<AuthorizationStatus>(
@@ -13,3 +18,27 @@ export const setAuthorizationStatus = createAction<AuthorizationStatus>(
 );
 
 export const setAvatarLink = createAction<string>('user/setAvatarLink');
+
+export const setFilm = createAction<FilmType>('films/setFilm');
+export const setLoadingFilm = createAction<boolean>('films/setLoadingFilm');
+export const setErrorMessageFilm = createAction<string | undefined>(
+  'films/setErrorMessage',
+);
+
+export const setPromoFilm = createAction<PromoFilmType>('films/setPromoFilm');
+export const setLoadingPromoFilm = createAction<boolean>(
+  'films/setLoadingPromoFilm',
+);
+
+export const setSimilarFilms = createAction<Array<SimilarFilmType>>(
+  'films/setSimilarFilms',
+);
+export const setLoadingSimilarFilms = createAction<boolean>(
+  'films/setLoadingSimilarFilms',
+);
+
+export const setComments =
+  createAction<Array<CommentType>>('films/setComments');
+export const setLoadingComments = createAction<boolean>(
+  'films/setLoadingComments',
+);

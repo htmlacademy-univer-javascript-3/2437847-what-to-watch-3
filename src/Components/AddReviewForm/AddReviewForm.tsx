@@ -1,5 +1,10 @@
 import { Rating } from '../Rating/Rating.tsx';
-import { useCallback, useState } from 'react';
+import { MouseEvent, useCallback, useState } from 'react';
+import { postCommentAction } from '../../Store/apiActions.ts';
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../Hooks/store.ts';
+import { appRoutes } from '../../appRoutes.ts';
+import { usePathId } from '../../Hooks/usePathId.ts';
 
 export type ReviewForm = {
   rating: number;
@@ -7,6 +12,9 @@ export type ReviewForm = {
 };
 
 export const AddReviewForm = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const id = usePathId();
   const [reviewForm, setReviewForm] = useState<ReviewForm>({
     rating: 0,
     comment: '',
@@ -17,6 +25,20 @@ export const AddReviewForm = () => {
       setReviewForm((prevValue) => prevValue && { ...prevValue, ...nextValue });
     },
     [setReviewForm],
+  );
+
+  const handleSubmit = useCallback(
+    (e: MouseEvent<HTMLElement>) => {
+      e.preventDefault();
+      dispatch(postCommentAction({ filmId: id, ...reviewForm })).then(
+        (result) => {
+          if (result.payload) {
+            navigate(appRoutes.Film(id));
+          }
+        },
+      );
+    },
+    [dispatch, reviewForm, id, navigate],
   );
 
   return (
@@ -43,7 +65,11 @@ export const AddReviewForm = () => {
             }}
           />
           <div className="add-review__submit">
-            <button className="add-review__btn" type="submit">
+            <button
+              className="add-review__btn"
+              type="submit"
+              onClick={handleSubmit}
+            >
               Post
             </button>
           </div>
