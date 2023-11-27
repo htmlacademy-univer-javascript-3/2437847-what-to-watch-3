@@ -1,30 +1,30 @@
 import { useCurrentFilmSelector } from '../../../Store/selectors.ts';
 
 export const OverviewTab = () => {
-  const { film } = useCurrentFilmSelector();
+  const { data } = useCurrentFilmSelector();
 
   return (
     <>
       <div className="film-rating">
-        <div className="film-rating__score">{film?.rating}</div>
+        <div className="film-rating__score">{data?.rating}</div>
         <p className="film-rating__meta">
           <span className="film-rating__level">Very good</span>
           <span className="film-rating__count">
-            {film?.scoresCount} ratings
+            {data?.scoresCount} ratings
           </span>
         </p>
       </div>
 
       <div className="film-card__text">
-        <p>{film?.description}</p>
+        <p>{data?.description}</p>
 
         <p className="film-card__director">
-          <strong>Director: {film?.director}</strong>
+          <strong>Director: {data?.director}</strong>
         </p>
 
         <p className="film-card__starring">
           <strong>
-            Starring: {film?.starring.map((actor) => actor).join(', ')}
+            Starring: {data?.starring.map((actor) => actor).join(', ')}
           </strong>
         </p>
       </div>

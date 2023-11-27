@@ -22,19 +22,19 @@ export const useFilms = () => {
     dispatch(fetchFilmsAction());
   }, [dispatch]);
 
-  const { films, isLoading, error } = useAllFilmsSelector();
-  return { films, isLoading, error };
+  const { data, isLoading, error } = useAllFilmsSelector();
+  return { data: data, isLoading, error };
 };
 
-export const useFilm = (id?: string) => {
+export const useFilm = (id: string) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fetchFilmAction(id));
   }, [dispatch, id]);
 
-  const { film, isLoading, error } = useCurrentFilmSelector();
-  return { film, isLoading, error };
+  const { data, isLoading, error } = useCurrentFilmSelector();
+  return { data: data, isLoading, error };
 };
 
 export const usePromoFilm = () => {
@@ -44,28 +44,28 @@ export const usePromoFilm = () => {
     dispatch(fetchPromoFilmAction());
   }, [dispatch]);
 
-  const { film, isLoading, error } = usePromoFilmSelector();
-  return { film, isLoading, error };
+  const { data, isLoading, error } = usePromoFilmSelector();
+  return { data: data, isLoading, error };
 };
 
-export const useSimilarFilms = (id?: string) => {
+export const useSimilarFilms = (id: string) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fetchSimilarFilmsAction(id));
   }, [dispatch, id]);
 
-  const { films, isLoading, error } = useSimilarFilmsSelector();
-  return { films, isLoading, error };
+  const { data, isLoading, error } = useSimilarFilmsSelector();
+  return { data: data, isLoading, error };
 };
 
-export const useComments = (id?: string) => {
+export const useComments = (id: string) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fetchCommentsAction(id));
   }, [dispatch, id]);
 
-  const { comments, isLoading, error } = useCommentsSelector();
-  return { comments, isLoading, error };
+  const { data, isLoading, error } = useCommentsSelector();
+  return { data: data, isLoading, error };
 };

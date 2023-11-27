@@ -7,20 +7,20 @@ import axios, {
 import { StatusCodes } from 'http-status-codes';
 import { getToken } from './token.ts';
 import { toast } from 'react-toastify';
-import { ErrorType } from '../Types/error.ts';
+import { Errors, ErrorType } from '../Types/error.ts';
 
 const BACKEND_URL = 'https://13.design.pages.academy/wtw';
 
 const REQUEST_TIMEOUT = 5000;
 
-const StatusCodeMapping: Record<number, boolean> = {
-  [StatusCodes.BAD_REQUEST]: true,
-  [StatusCodes.UNAUTHORIZED]: true,
-  [StatusCodes.NOT_FOUND]: true,
-};
+const StatusCodeMapping: number[] = [
+  StatusCodes.BAD_REQUEST,
+  StatusCodes.UNAUTHORIZED,
+  StatusCodes.NOT_FOUND,
+];
 
 const shouldDisplayError = (response: AxiosResponse): boolean =>
-  !!StatusCodeMapping[response.status];
+  StatusCodeMapping.includes(response.status);
 
 export const createAPI = (): AxiosInstance => {
   const api = axios.create({
@@ -44,9 +44,9 @@ export const createAPI = (): AxiosInstance => {
       if (error.response && shouldDisplayError(error.response)) {
         const { message, errorType, details } = error.response.data;
 
-        if (errorType === 'VALIDATION_ERROR') {
+        if (errorType === Errors.VALIDATION_ERROR) {
           toast.error(details[0].messages[0]);
-        } else if (errorType !== 'COMMON_ERROR') {
+        } else if (errorType !== Errors.COMMON_ERROR) {
           toast.warn(message);
         }
       }

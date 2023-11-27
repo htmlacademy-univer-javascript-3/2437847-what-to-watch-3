@@ -9,3 +9,8 @@ type DetailsError = {
   value: string;
   messages: string[];
 };
+
+export enum Errors {
+  VALIDATION_ERROR = 'VALIDATION_ERROR',
+  COMMON_ERROR = 'COMMON_ERROR',
+}

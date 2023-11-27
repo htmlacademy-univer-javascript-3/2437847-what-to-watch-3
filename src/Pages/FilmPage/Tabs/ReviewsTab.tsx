@@ -1,11 +1,11 @@
 import { useComments } from '../../../Hooks/films.ts';
-import { useParams } from 'react-router-dom';
 import { convertDate } from '../../../Helpers/Review.ts';
 import { Loader } from '../../../Components/Loader/Loader.tsx';
+import { usePathId } from '../../../Hooks/usePathId.ts';
 
 export const ReviewsTab = () => {
-  const { id } = useParams();
-  const { comments, isLoading } = useComments(id);
+  const id = usePathId();
+  const { data: comments, isLoading } = useComments(id);
   return (
     <div className="film-card__reviews film-card__row">
       <div className="film-card__reviews-col">

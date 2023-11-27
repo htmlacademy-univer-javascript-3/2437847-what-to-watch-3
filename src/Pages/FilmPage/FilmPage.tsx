@@ -5,7 +5,7 @@ import { Tab } from '../../Components/Tabs/Tab.tsx';
 import { OverviewTab } from './Tabs/OverviewTab.tsx';
 import { DetailsTab } from './Tabs/DetailsTab.tsx';
 import { ReviewsTab } from './Tabs/ReviewsTab.tsx';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { appRoutes } from '../../appRoutes.ts';
 import { FilmCardList } from '../../Components/FilmCardList/FilmCardList.tsx';
 import { useFilm, useSimilarFilms } from '../../Hooks/films.ts';
@@ -13,12 +13,13 @@ import { NotFoundStyles } from './NotFoundStyles.ts';
 import { Loader } from '../../Components/Loader/Loader.tsx';
 import { useAuthorizationStatusSelector } from '../../Store/selectors.ts';
 import { AuthorizationStatus } from '../../Types/auth.ts';
+import { usePathId } from '../../Hooks/usePathId.ts';
 
 export const FilmPage = () => {
-  const { id } = useParams();
+  const id = usePathId();
   const authStatus = useAuthorizationStatusSelector();
-  const { film, error, isLoading } = useFilm(id);
-  const { films: similarFilms } = useSimilarFilms(id);
+  const { data: film, error, isLoading } = useFilm(id);
+  const { data: similarFilms } = useSimilarFilms(id);
 
   return (
     <Loader isLoading={isLoading} height={'100vh'} backgroundColor={'#e1b0b2'}>
@@ -69,7 +70,7 @@ export const FilmPage = () => {
                     )}
                     {authStatus === AuthorizationStatus.Auth && (
                       <Link
-                        to={appRoutes.AddReview(id || '')}
+                        to={appRoutes.AddReview(id)}
                         className="btn film-card__button"
                       >
                         Add review

@@ -30,37 +30,37 @@ type state = {
   allFilms: {
     isLoading: boolean;
     error?: string;
-    films: Array<FilmListType>;
+    data: Array<FilmListType>;
   };
   user: {
     avatarLink: string;
     authorizationStatus: AuthorizationStatus;
   };
-  promoFilm: { isLoading: boolean; error?: string; film?: PromoFilmType };
-  currentFilm: { isLoading: boolean; error?: string; film?: FilmType };
+  promoFilm: { isLoading: boolean; error?: string; data?: PromoFilmType };
+  currentFilm: { isLoading: boolean; error?: string; data?: FilmType };
   similarFilms: {
     isLoading: boolean;
     error?: string;
-    films: Array<SimilarFilmType>;
+    data: Array<SimilarFilmType>;
   };
   comments: {
     isLoading: boolean;
     error?: string;
-    comments: Array<CommentType>;
+    data: Array<CommentType>;
   };
 };
 
 const initialState: state = {
   currentGenre: ALL_GENRES,
-  allFilms: { isLoading: false, films: [] },
+  allFilms: { isLoading: false, data: [] },
   user: {
     authorizationStatus: AuthorizationStatus.Unknown,
     avatarLink: '',
   },
-  promoFilm: { isLoading: false, film: undefined },
-  currentFilm: { isLoading: false, film: undefined },
-  similarFilms: { isLoading: false, films: [] },
-  comments: { isLoading: false, comments: [] },
+  promoFilm: { isLoading: false, data: undefined },
+  currentFilm: { isLoading: false, data: undefined },
+  similarFilms: { isLoading: false, data: [] },
+  comments: { isLoading: false, data: [] },
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -69,7 +69,7 @@ const reducer = createReducer(initialState, (builder) => {
       state.currentGenre = value.payload;
     })
     .addCase(setFilms, (state, value) => {
-      state.allFilms.films = value.payload;
+      state.allFilms.data = value.payload;
     })
     .addCase(setLoadingFilms, (state, value) => {
       state.allFilms.isLoading = value.payload;
@@ -81,19 +81,19 @@ const reducer = createReducer(initialState, (builder) => {
       state.user.avatarLink = value.payload;
     })
     .addCase(setFilm, (state, value) => {
-      state.currentFilm.film = value.payload;
+      state.currentFilm.data = value.payload;
     })
     .addCase(setLoadingFilm, (state, value) => {
       state.currentFilm.isLoading = value.payload;
     })
     .addCase(setSimilarFilms, (state, value) => {
-      state.similarFilms.films = value.payload;
+      state.similarFilms.data = value.payload;
     })
     .addCase(setLoadingSimilarFilms, (state, value) => {
       state.similarFilms.isLoading = value.payload;
     })
     .addCase(setComments, (state, value) => {
-      state.comments.comments = value.payload;
+      state.comments.data = value.payload;
     })
     .addCase(setLoadingComments, (state, value) => {
       state.comments.isLoading = value.payload;
@@ -105,7 +105,7 @@ const reducer = createReducer(initialState, (builder) => {
       state.promoFilm.isLoading = value.payload;
     })
     .addCase(setPromoFilm, (state, value) => {
-      state.promoFilm.film = value.payload;
+      state.promoFilm.data = value.payload;
     });
 });
 

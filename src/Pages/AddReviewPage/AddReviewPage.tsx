@@ -1,13 +1,14 @@
 import { Header } from '../../Components/Header/Header.tsx';
 import { appRoutes } from '../../appRoutes.ts';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AddReviewForm } from '../../Components/AddReviewForm/AddReviewForm.tsx';
 import { Loader } from '../../Components/Loader/Loader.tsx';
 import { useFilm } from '../../Hooks/films.ts';
+import { usePathId } from '../../Hooks/usePathId.ts';
 
 export const AddReviewPage = () => {
-  const { id } = useParams();
-  const { film, isLoading } = useFilm(id);
+  const id = usePathId();
+  const { data: film, isLoading } = useFilm(id);
 
   return (
     <Loader isLoading={isLoading} height={'100vh'} backgroundColor={'#e1b0b2'}>

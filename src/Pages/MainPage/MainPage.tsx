@@ -17,8 +17,8 @@ import { AuthorizationStatus } from '../../Types/auth.ts';
 const FILMS_PER_PAGE = 8;
 
 export const MainPage = () => {
-  const { films: allFilms, isLoading } = useFilms();
-  const { film: promoFilm } = usePromoFilm();
+  const { data: allFilms, isLoading } = useFilms();
+  const { data: promoFilm } = usePromoFilm();
   const currentGenre = useCurrentGenreSelector();
   const films = filterFilms(allFilms, currentGenre);
   const genres = extractAllGenres(allFilms);
