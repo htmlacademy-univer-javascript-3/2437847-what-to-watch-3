@@ -16,7 +16,6 @@ const FILMS_PER_PAGE = 8;
 
 export const MainPage = () => {
   const { data: allFilms, isLoading } = useFilms();
-  console.log(allFilms);
   const { data: promoFilm } = usePromoFilm();
   const currentGenre = useCurrentGenreSelector();
   const films = filterFilms(allFilms, currentGenre);
