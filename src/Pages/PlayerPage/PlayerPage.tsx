@@ -10,7 +10,7 @@ export const PlayerPage = () => {
   const id = usePathId();
   const { data: film } = useFilm(id);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [progress, setProgress] = useState(0);
+  const [videoProgress, setVideoProgress] = useState(0);
   const [playerTime, setPlayerTime] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
   const navigate = useNavigate();
@@ -44,7 +44,7 @@ export const PlayerPage = () => {
 
       const progress = (currentTime / duration) * 100;
       setPlayerTime(Math.floor(duration - currentTime));
-      setProgress(progress);
+      setVideoProgress(progress);
     }
   };
 
@@ -58,7 +58,7 @@ export const PlayerPage = () => {
       const progressBarWidth = progressBar.offsetWidth;
 
       const progress = (offsetX / progressBarWidth) * 100;
-      setProgress(progress);
+      setVideoProgress(progress);
 
       const video = videoRef.current;
       if (video) {
@@ -93,12 +93,15 @@ export const PlayerPage = () => {
           <div className="player__time">
             <progress
               className="player__progress"
-              value={progress}
+              value={videoProgress}
               max="100"
               ref={progressBarRef}
               onClick={handleProgressBarClick}
             />
-            <div className="player__toggler" style={{ left: `${progress}%` }}>
+            <div
+              className="player__toggler"
+              style={{ left: `${videoProgress}%` }}
+            >
               Toggler
             </div>
           </div>

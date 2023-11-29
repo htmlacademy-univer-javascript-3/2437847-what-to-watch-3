@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { App } from './App.tsx';
-import { PLAYER } from './Mocks/Player.ts';
 import { Provider } from 'react-redux';
 import { store } from './Store';
 import { ToastContainer } from 'react-toastify';
@@ -18,7 +17,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <ToastContainer />
-      <App player={PLAYER} />
+      <App />
     </Provider>
   </React.StrictMode>,
 );
