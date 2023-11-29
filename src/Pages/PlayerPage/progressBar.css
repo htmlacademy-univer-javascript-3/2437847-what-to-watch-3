@@ -1,0 +1,9 @@
+.player__progress::after {
+  content: '';
+  position: absolute;
+  top: -10px; /* Расширение зоны клика вверх */
+  bottom: -10px; /* Расширение зоны клика вниз */
+  left: 0;
+  right: 0;
+  cursor: pointer;
+}
