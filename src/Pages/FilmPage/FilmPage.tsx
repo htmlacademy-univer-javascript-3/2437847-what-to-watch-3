@@ -15,6 +15,7 @@ import { AuthorizationStatus } from '../../Types/auth.ts';
 import { usePathId } from '../../Hooks/usePathId.ts';
 import { useAuthorizationStatusSelector } from '../../Store/User/selectors.ts';
 import { FavouriteButton } from '../../Components/FavouriteButton/FavouriteButton.tsx';
+import { PlayButton } from '../../Components/PlayButton/PlayButton.tsx';
 
 export const FilmPage = () => {
   const id = usePathId();
@@ -48,15 +49,7 @@ export const FilmPage = () => {
                   </p>
 
                   <div className="film-card__buttons">
-                    <button
-                      className="btn btn--play film-card__button"
-                      type="button"
-                    >
-                      <svg viewBox="0 0 19 19" width="19" height="19">
-                        <use xlinkHref="#play-s"></use>
-                      </svg>
-                      <span>Play</span>
-                    </button>
+                    <PlayButton filmId={id} />
                     {authStatus === AuthorizationStatus.Auth && (
                       <FavouriteButton filmId={id} />
                     )}
