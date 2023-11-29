@@ -35,14 +35,6 @@ export type PromoFilmType = {
   isFavorite: boolean;
 };
 
-export type SimilarFilmType = {
-  id: string;
-  name: string;
-  previewImage: string;
-  previewVideoLink: string;
-  genre: string;
-};
-
 export type CommentType = {
   id: string;
   date: string;

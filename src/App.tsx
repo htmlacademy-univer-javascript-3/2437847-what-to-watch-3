@@ -28,7 +28,7 @@ export const App = (props: AppProps) => (
       </Route>
 
       <Route element={<PrivateRoute />}>
-        <Route path="mylist" element={<MyListPage films={[]} />} />
+        <Route path="mylist" element={<MyListPage />} />
       </Route>
 
       <Route path="*" element={<NotFoundPage />} />
