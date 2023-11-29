@@ -1,7 +1,8 @@
 import classNames from 'classnames';
 import { useAppDispatch } from '../../Hooks/store.ts';
-import { setGenre } from '../../Store/actions.ts';
+
 import { ButtonStyle } from '../../Helpers/ButtonStyle.ts';
+import { setGenre } from '../../Store/Films/films.ts';
 
 type GenreItemProps = {
   genre: string;

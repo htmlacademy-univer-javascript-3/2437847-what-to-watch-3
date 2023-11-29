@@ -11,9 +11,9 @@ import { FilmCardList } from '../../Components/FilmCardList/FilmCardList.tsx';
 import { useFilm, useSimilarFilms } from '../../Hooks/films.ts';
 import { NotFoundStyles } from './NotFoundStyles.ts';
 import { Loader } from '../../Components/Loader/Loader.tsx';
-import { useAuthorizationStatusSelector } from '../../Store/selectors.ts';
 import { AuthorizationStatus } from '../../Types/auth.ts';
 import { usePathId } from '../../Hooks/usePathId.ts';
+import { useAuthorizationStatusSelector } from '../../Store/User/selectors.ts';
 
 export const FilmPage = () => {
   const id = usePathId();

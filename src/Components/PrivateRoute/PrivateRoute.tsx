@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { AuthorizationStatus } from '../../Types/auth.ts';
-import { useAuthorizationStatusSelector } from '../../Store/selectors.ts';
+import { useAuthorizationStatusSelector } from '../../Store/User/selectors.ts';
 
 export const PrivateRoute = () => {
   const authStatus = useAuthorizationStatusSelector();

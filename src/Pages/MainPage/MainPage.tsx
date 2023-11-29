@@ -1,33 +1,13 @@
 import { Footer } from '../../Components/Footer/Footer.tsx';
 import { Header } from '../../Components/Header/Header.tsx';
-import { FilmCardList } from '../../Components/FilmCardList/FilmCardList.tsx';
-import { filterFilms } from '../../Helpers/filterFilms.ts';
-import { extractAllGenres } from '../../Helpers/extractAllGenres.ts';
-import { GenresList } from '../../Components/GenresList/GenresList.tsx';
-import { useCallback, useState } from 'react';
-import { ShowMoreButton } from '../../Components/ShowMoreButton/ShowMoreButton.tsx';
-import { Loader } from '../../Components/Loader/Loader.tsx';
-import {
-  useAuthorizationStatusSelector,
-  useCurrentGenreSelector,
-} from '../../Store/selectors.ts';
-import { useFilms, usePromoFilm } from '../../Hooks/films.ts';
+import { usePromoFilm } from '../../Hooks/films.ts';
 import { AuthorizationStatus } from '../../Types/auth.ts';
-
-const FILMS_PER_PAGE = 8;
+import { useAuthorizationStatusSelector } from '../../Store/User/selectors.ts';
+import { MainPageFilmCatalog } from './MainPageFilmCatalog.tsx';
 
 export const MainPage = () => {
-  const { data: allFilms, isLoading } = useFilms();
-  const { data: promoFilm } = usePromoFilm();
-  const currentGenre = useCurrentGenreSelector();
-  const films = filterFilms(allFilms, currentGenre);
-  const genres = extractAllGenres(allFilms);
   const authStatus = useAuthorizationStatusSelector();
-  const [countFilms, setCountFilms] = useState(FILMS_PER_PAGE);
-
-  const handleShowMore = useCallback(() => {
-    setCountFilms((prev) => prev + FILMS_PER_PAGE);
-  }, [setCountFilms]);
+  const { data: promoFilm } = usePromoFilm();
 
   return (
     <>
@@ -87,17 +67,7 @@ export const MainPage = () => {
       </section>
 
       <div className="page-content">
-        <section className="catalog">
-          <h2 className="catalog__title visually-hidden">Catalog</h2>
-
-          <Loader isLoading={isLoading}>
-            <GenresList genres={genres} activeGenre={currentGenre} />
-            <FilmCardList films={films.slice(0, countFilms)} />
-            {countFilms < films.length && (
-              <ShowMoreButton onClick={handleShowMore} />
-            )}
-          </Loader>
-        </section>
+        <MainPageFilmCatalog />
         <Footer />
       </div>
     </>
