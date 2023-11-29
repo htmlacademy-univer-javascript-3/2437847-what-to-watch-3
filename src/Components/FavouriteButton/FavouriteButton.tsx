@@ -11,7 +11,7 @@ export const FavouriteButton = ({ filmId }: FavouriteButtonProps) => {
   const { data: films, fetchFavouriteFilms } = useFavouriteFilms();
   useEffect(() => {
     fetchFavouriteFilms();
-  }, []);
+  }, [fetchFavouriteFilms]);
   const isFavourite = films.some((film) => film.id === filmId);
 
   const dispatch = useAppDispatch();
@@ -29,7 +29,7 @@ export const FavouriteButton = ({ filmId }: FavouriteButtonProps) => {
         });
       }
     },
-    [dispatch, filmId, isFavourite],
+    [dispatch, filmId, isFavourite, fetchFavouriteFilms],
   );
 
   return (
