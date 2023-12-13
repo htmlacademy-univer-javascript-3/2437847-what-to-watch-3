@@ -4,6 +4,8 @@ import { usePromoFilm } from '../../Hooks/films.ts';
 import { AuthorizationStatus } from '../../Types/auth.ts';
 import { useAuthorizationStatusSelector } from '../../Store/User/selectors.ts';
 import { MainPageFilmCatalog } from './MainPageFilmCatalog.tsx';
+import { FavouriteButton } from '../../Components/FavouriteButton/FavouriteButton.tsx';
+import { PlayButton } from '../../Components/PlayButton/PlayButton.tsx';
 
 export const MainPage = () => {
   const authStatus = useAuthorizationStatusSelector();
@@ -39,26 +41,9 @@ export const MainPage = () => {
               </p>
 
               <div className="film-card__buttons">
-                <button
-                  className="btn btn--play film-card__button"
-                  type="button"
-                >
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
+                <PlayButton filmId={promoFilm?.id} />
                 {authStatus === AuthorizationStatus.Auth && (
-                  <button
-                    className="btn btn--list film-card__button"
-                    type="button"
-                  >
-                    <svg viewBox="0 0 19 20" width="19" height="20">
-                      <use xlinkHref="#add"></use>
-                    </svg>
-                    <span>My list</span>
-                    <span className="film-card__count">9</span>
-                  </button>
+                  <FavouriteButton filmId={promoFilm?.id} />
                 )}
               </div>
             </div>

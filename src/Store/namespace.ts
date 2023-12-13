@@ -3,6 +3,7 @@ export enum Namespace {
   Film = 'film',
   PromoFilm = 'promoFilm',
   SimilarFilms = 'similarFilms',
+  FavouriteFilms = 'favoriteFilms',
   User = 'user',
   Comments = 'comments',
 }

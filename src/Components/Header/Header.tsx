@@ -9,12 +9,14 @@ import {
   useAuthorizationStatusSelector,
   useAvatarLinkSelector,
 } from '../../Store/User/selectors.ts';
+import classNames from 'classnames';
 
 type HeaderProps = {
   children?: ReactNode;
+  isMyListPage?: boolean;
 };
 
-export const Header = ({ children }: HeaderProps) => {
+export const Header = ({ children, isMyListPage }: HeaderProps) => {
   const authStatus = useAuthorizationStatusSelector();
   const avatarLink = useAvatarLinkSelector();
   const dispatch = useAppDispatch();
@@ -27,14 +29,26 @@ export const Header = ({ children }: HeaderProps) => {
   );
 
   return (
-    <header className="page-header film-card__head">
+    <header
+      className={classNames(
+        'page-header',
+        isMyListPage ? 'user-page__head' : 'film-card__head',
+      )}
+    >
       <Logo />
       {children}
       {authStatus === AuthorizationStatus.Auth ? (
         <ul className="user-block">
           <li className="user-block__item">
             <div className="user-block__avatar">
-              <img src={avatarLink} alt="User avatar" width="63" height="63" />
+              <Link to={appRoutes.MyList}>
+                <img
+                  src={avatarLink}
+                  alt="User avatar"
+                  width="63"
+                  height="63"
+                />
+              </Link>
             </div>
           </li>
           <li className="user-block__item">
