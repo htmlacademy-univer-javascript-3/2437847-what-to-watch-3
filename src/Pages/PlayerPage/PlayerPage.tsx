@@ -1,6 +1,6 @@
 import { useFilm } from '../../Hooks/films.ts';
 import { usePathId } from '../../Hooks/usePathId.ts';
-import { convertTimeToPlayerFormat } from '../../Helpers/Time.ts';
+import { convertTimeToPlayerFormat } from '../../Helpers/convertTime.ts';
 import { MouseEvent, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { appRoutes } from '../../appRoutes.ts';

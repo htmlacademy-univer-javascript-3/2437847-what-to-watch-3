@@ -1,4 +1,4 @@
-import { convertFilmRatingToLevel } from '../../Helpers/FilmRatingLevel.ts';
+import { convertFilmRatingToLevel } from '../../Helpers/convertFilmRatingLevel.ts';
 
 export type FilmRatingProps = {
   rating?: number;
