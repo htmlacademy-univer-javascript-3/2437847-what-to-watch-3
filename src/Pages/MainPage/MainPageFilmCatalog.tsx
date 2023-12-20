@@ -6,7 +6,7 @@ import { useFilms } from '../../Hooks/films.ts';
 import { useCurrentGenreSelector } from '../../Store/Films/selectors.ts';
 import { filterFilms } from '../../Helpers/filterFilms.ts';
 import { extractAllGenres } from '../../Helpers/extractAllGenres.ts';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 const FILMS_PER_PAGE = 8;
 
@@ -20,6 +20,10 @@ export const MainPageFilmCatalog = () => {
   const handleShowMore = useCallback(() => {
     setCountFilms((prev) => prev + FILMS_PER_PAGE);
   }, [setCountFilms]);
+
+  useEffect(() => {
+    setCountFilms(FILMS_PER_PAGE);
+  }, [currentGenre]);
 
   return (
     <section className="catalog">

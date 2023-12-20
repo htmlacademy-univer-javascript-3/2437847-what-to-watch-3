@@ -1,21 +1,33 @@
 import { Footer } from '../../Components/Footer/Footer.tsx';
 import { Logo } from '../../Components/Logo/Logo.tsx';
 import { useAppDispatch } from '../../Hooks/store.ts';
-import { useState, MouseEvent } from 'react';
+import { MouseEvent, useEffect, useState } from 'react';
 import { loginAction } from '../../Store/apiActions.ts';
 import { useNavigate } from 'react-router-dom';
 import { appRoutes } from '../../appRoutes.ts';
+import { useAuthorizationStatusSelector } from '../../Store/User/selectors.ts';
+import { AuthorizationStatus } from '../../Types/auth.ts';
 
 export const SignInPage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const authStatus = useAuthorizationStatusSelector();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const handleSubmit = (event: MouseEvent<HTMLElement>) => {
     event.preventDefault();
-    dispatch(loginAction({ email, password }));
-    navigate(appRoutes.Main);
+    dispatch(loginAction({ email, password })).then((result) => {
+      if (result.payload) {
+        navigate(appRoutes.Main);
+      }
+    });
   };
+
+  useEffect(() => {
+    if (authStatus === AuthorizationStatus.Auth) {
+      navigate(appRoutes.Main);
+    }
+  }, [authStatus, navigate]);
 
   return (
     <div className="user-page">
