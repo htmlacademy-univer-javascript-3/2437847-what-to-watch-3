@@ -21,6 +21,10 @@ export const MainPageFilmCatalog = () => {
     setCountFilms((prev) => prev + FILMS_PER_PAGE);
   }, [setCountFilms]);
 
+  useEffect(() => {
+    setCountFilms(FILMS_PER_PAGE);
+  }, [currentGenre]);
+
   return (
     <section className="catalog">
       <h2 className="catalog__title visually-hidden">Catalog</h2>

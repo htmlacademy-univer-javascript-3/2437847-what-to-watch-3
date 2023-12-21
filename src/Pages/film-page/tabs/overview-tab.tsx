@@ -5,15 +5,7 @@ export const OverviewTab = () => {
 
   return (
     <>
-      <div className="film-rating">
-        <div className="film-rating__score">{data?.rating}</div>
-        <p className="film-rating__meta">
-          <span className="film-rating__level">Very good</span>
-          <span className="film-rating__count">
-            {data?.scoresCount} ratings
-          </span>
-        </p>
-      </div>
+      <FilmRating rating={data?.rating} scoresCount={data?.scoresCount} />
 
       <div className="film-card__text">
         <p>{data?.description}</p>

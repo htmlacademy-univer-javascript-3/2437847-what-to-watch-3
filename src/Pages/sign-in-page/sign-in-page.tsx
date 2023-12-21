@@ -9,13 +9,23 @@ import { appRoutes } from '../../app-routes.ts';
 export const SignInPage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const authStatus = useAuthorizationStatusSelector();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const handleSubmit = (event: MouseEvent<HTMLElement>) => {
     event.preventDefault();
-    dispatch(loginAction({ email, password }));
-    navigate(appRoutes.Main);
+    dispatch(loginAction({ email, password })).then((result) => {
+      if (result.payload) {
+        navigate(appRoutes.Main);
+      }
+    });
   };
+
+  useEffect(() => {
+    if (authStatus === AuthorizationStatus.Auth) {
+      navigate(appRoutes.Main);
+    }
+  }, [authStatus, navigate]);
 
   return (
     <div className="user-page">

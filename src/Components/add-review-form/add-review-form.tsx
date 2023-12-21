@@ -14,6 +14,7 @@ export type ReviewForm = {
 export const AddReviewForm = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const [disabled, setDisabled] = useState(false);
   const id = usePathId();
   const [reviewForm, setReviewForm] = useState<ReviewForm>({
     rating: 0,
@@ -29,9 +30,11 @@ export const AddReviewForm = () => {
 
   const handleSubmit = useCallback(
     (e: MouseEvent<HTMLElement>) => {
+      setDisabled(true);
       e.preventDefault();
       dispatch(postCommentAction({ filmId: id, ...reviewForm })).then(
         (result) => {
+          setDisabled(false);
           if (result.payload) {
             navigate(appRoutes.Film(id));
           }
@@ -50,6 +53,7 @@ export const AddReviewForm = () => {
               rating: value,
             });
           }}
+          disabled={disabled}
         />
         <div className="add-review__text">
           <textarea
@@ -63,11 +67,18 @@ export const AddReviewForm = () => {
                 comment: e.target.value,
               });
             }}
+            disabled={disabled}
           />
           <div className="add-review__submit">
             <button
               className="add-review__btn"
               type="submit"
+              disabled={
+                reviewForm.comment.length < 50 ||
+                reviewForm.comment.length > 400 ||
+                reviewForm.rating === 0 ||
+                disabled
+              }
               onClick={handleSubmit}
             >
               Post
