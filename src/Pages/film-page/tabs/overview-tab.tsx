@@ -1,4 +1,5 @@
 import { useCurrentFilmSelector } from '../../../store/film/selectors.ts';
+import {FilmRating} from '../../../components/film-rating/film-rating.tsx';
 
 export const OverviewTab = () => {
   const { data } = useCurrentFilmSelector();

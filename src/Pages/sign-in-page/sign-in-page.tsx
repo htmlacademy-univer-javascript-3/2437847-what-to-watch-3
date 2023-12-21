@@ -1,10 +1,12 @@
 import { Footer } from '../../components/footer/footer.tsx';
 import { Logo } from '../../components/logo/logo.tsx';
 import { useAppDispatch } from '../../hooks/store.ts';
-import { useState, MouseEvent } from 'react';
+import {useState, MouseEvent, useEffect} from 'react';
 import { loginAction } from '../../store/api-actions.ts';
 import { useNavigate } from 'react-router-dom';
 import { appRoutes } from '../../app-routes.ts';
+import {useAuthorizationStatusSelector} from '../../store/user/selectors.ts';
+import {AuthorizationStatus} from '../../types/auth.ts';
 
 export const SignInPage = () => {
   const dispatch = useAppDispatch();

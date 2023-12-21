@@ -1,4 +1,4 @@
-import { convertToHoursAndMinutes } from '../../../helpers/time.ts';
+import { convertToHoursAndMinutes } from '../../../helpers/convert-time.ts';
 import { useCurrentFilmSelector } from '../../../store/film/selectors.ts';
 
 export const DetailsTab = () => {

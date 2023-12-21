@@ -6,7 +6,7 @@ import { useFilms } from '../../hooks/films.ts';
 import { useCurrentGenreSelector } from '../../store/films/selectors.ts';
 import { filterFilms } from '../../helpers/filter-films.ts';
 import { extractAllGenres } from '../../helpers/extract-all-genres.ts';
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 
 const FILMS_PER_PAGE = 8;
 

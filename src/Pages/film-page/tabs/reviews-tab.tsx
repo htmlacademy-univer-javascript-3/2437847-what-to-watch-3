@@ -1,5 +1,5 @@
 import { useComments } from '../../../hooks/films.ts';
-import { convertDate } from '../../../helpers/review.ts';
+import { convertDate } from '../../../helpers/convert-date.ts';
 import { Loader } from '../../../components/loader/loader.tsx';
 import { usePathId } from '../../../hooks/use-path-id.ts';
 
