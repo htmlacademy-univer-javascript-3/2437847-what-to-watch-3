@@ -1,6 +1,6 @@
 import { BallTriangle } from 'react-loader-spinner';
 import { ReactNode } from 'react';
-import { LoaderStyle } from './LoaderStyle.ts';
+import { LoaderStyle } from './loader-style.ts';
 
 type LoaderProps = {
   isLoading: boolean;

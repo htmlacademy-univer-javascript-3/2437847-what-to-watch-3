@@ -1,13 +1,13 @@
-import { MainPage } from './Pages/MainPage/MainPage.tsx';
+import { MainPage } from './pages/main-page/main-page.tsx';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { NotFoundPage } from './Pages/NotFoundPage/NotFoundPage.tsx';
-import { SignInPage } from './Pages/SignInPage/SignInPage.tsx';
-import { MyListPage } from './Pages/MyListPage/MyListPage.tsx';
-import { FilmPage } from './Pages/FilmPage/FilmPage.tsx';
-import { AddReviewPage } from './Pages/AddReviewPage/AddReviewPage.tsx';
-import { PlayerPage } from './Pages/PlayerPage/PlayerPage.tsx';
-import { PrivateRoute } from './Components/PrivateRoute/PrivateRoute.tsx';
-import { appRoutes } from './appRoutes.ts';
+import { NotFoundPage } from './pages/not-found-page/not-found-page.tsx';
+import { SignInPage } from './pages/sign-in-page/sign-in-page.tsx';
+import { MyListPage } from './pages/my-list-page/my-list-page.tsx';
+import { FilmPage } from './pages/film-page/film-page.tsx';
+import { AddReviewPage } from './pages/add-review-page/add-review-page.tsx';
+import { PlayerPage } from './pages/player-page/player-page.tsx';
+import { PrivateRoute } from './components/private-route/private-route.tsx';
+import { appRoutes } from './app-routes.ts';
 
 export const App = () => (
   <BrowserRouter>

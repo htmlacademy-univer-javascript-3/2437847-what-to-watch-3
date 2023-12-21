@@ -7,7 +7,7 @@ import axios, {
 import { StatusCodes } from 'http-status-codes';
 import { getToken } from './token.ts';
 import { toast } from 'react-toastify';
-import { Errors, ErrorType } from '../Types/error.ts';
+import { Errors, ErrorType } from '../types/error.ts';
 
 const BACKEND_URL = 'https://13.design.pages.academy/wtw';
 

@@ -1,34 +1,34 @@
-import { FilmType } from '../../types/film.ts';
-import { fetchFilmAction } from '../api-actions.ts';
+import { PromoFilmType } from '../../types/film.ts';
+import { fetchPromoFilmAction } from '../api-actions.ts';
 import { Namespace } from '../namespace.ts';
 import { createSlice } from '@reduxjs/toolkit';
 
-type FilmState = {
+type PromoFilmState = {
   isLoading: boolean;
   error?: string;
-  data?: FilmType;
+  data?: PromoFilmType;
 };
 
-const initialState: FilmState = {
+const initialState: PromoFilmState = {
   isLoading: false,
   data: undefined,
 };
 
-export const film = createSlice({
-  name: Namespace.Film,
+export const promoFilm = createSlice({
+  name: Namespace.PromoFilm,
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchFilmAction.pending, (state) => {
+      .addCase(fetchPromoFilmAction.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(fetchFilmAction.fulfilled, (state, value) => {
+      .addCase(fetchPromoFilmAction.fulfilled, (state, value) => {
         state.isLoading = false;
         state.error = undefined;
         state.data = value.payload;
       })
-      .addCase(fetchFilmAction.rejected, (state, value) => {
+      .addCase(fetchPromoFilmAction.rejected, (state, value) => {
         state.isLoading = false;
         state.error = value.error.message;
       });

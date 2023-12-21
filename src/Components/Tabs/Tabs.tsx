@@ -1,7 +1,7 @@
-import { TabProps } from './Tab.tsx';
+import { TabProps } from './tab.tsx';
 import { ReactElement, useState } from 'react';
 import classNames from 'classnames';
-import { ButtonStyle } from '../../Helpers/ButtonStyle.ts';
+import { ButtonStyle } from '../../helpers/button-style.ts';
 
 type TabsProps = {
   children: ReactElement<TabProps>[];

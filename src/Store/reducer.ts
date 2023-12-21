@@ -1,12 +1,12 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import { promoFilm } from './PromoFilm/promoFilm.ts';
+import { promoFilm } from './promo-film/promo-film.ts';
 import { Namespace } from './namespace.ts';
-import { film } from './Film/film.ts';
-import { films } from './Films/films.ts';
-import { similarFilms } from './SimilarFilms/similarFilms.ts';
-import { favouriteFilms } from './FavouriteFilms/favouriteFilms.ts';
-import { user } from './User/user.ts';
-import { comments } from './Comments/comments.ts';
+import { film } from './film/film.ts';
+import { films } from './films/films.ts';
+import { similarFilms } from './similar-films/similar-films.ts';
+import { favouriteFilms } from './favourite-films/favourite-films.ts';
+import { user } from './user/user.ts';
+import { comments } from './comments/comments.ts';
 
 export const rootReducer = combineReducers({
   [Namespace.Film]: film.reducer,

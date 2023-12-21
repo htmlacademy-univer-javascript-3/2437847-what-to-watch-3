@@ -1,4 +1,4 @@
-import { Star } from './Star.tsx';
+import { Star } from './star.tsx';
 
 const MAX_RATING = 10;
 

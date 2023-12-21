@@ -1,4 +1,4 @@
-import { useAppSelector } from '../../Hooks/store.ts';
+import { useAppSelector } from '../../hooks/store.ts';
 import { Namespace } from '../namespace.ts';
 
 export const useAllFilmsSelector = () =>

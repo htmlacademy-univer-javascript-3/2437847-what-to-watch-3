@@ -1,14 +1,14 @@
-import { Logo } from '../Logo/Logo.tsx';
+import { Logo } from '../logo/logo.tsx';
 import { MouseEvent, ReactNode, useCallback } from 'react';
-import { useAppDispatch } from '../../Hooks/store.ts';
-import { AuthorizationStatus } from '../../Types/auth.ts';
+import { useAppDispatch } from '../../hooks/store.ts';
+import { AuthorizationStatus } from '../../types/auth.ts';
 import { Link } from 'react-router-dom';
-import { appRoutes } from '../../appRoutes.ts';
-import { logoutAction } from '../../Store/apiActions.ts';
+import { appRoutes } from '../../app-routes.ts';
+import { logoutAction } from '../../store/api-actions.ts';
 import {
   useAuthorizationStatusSelector,
   useAvatarLinkSelector,
-} from '../../Store/User/selectors.ts';
+} from '../../store/user/selectors.ts';
 import classNames from 'classnames';
 
 type HeaderProps = {

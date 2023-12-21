@@ -1,34 +1,34 @@
-import { CommentType } from '../../types/film.ts';
-import { fetchCommentsAction } from '../api-actions.ts';
+import { FilmListType } from '../../types/film.ts';
+import { fetchSimilarFilmsAction } from '../api-actions.ts';
 import { Namespace } from '../namespace.ts';
 import { createSlice } from '@reduxjs/toolkit';
 
-type CommentsState = {
+type SimilarFilmsState = {
   isLoading: boolean;
   error?: string;
-  data: Array<CommentType>;
+  data: Array<FilmListType>;
 };
 
-const initialState: CommentsState = {
+const initialState: SimilarFilmsState = {
   isLoading: false,
   data: [],
 };
 
-export const comments = createSlice({
-  name: Namespace.Comments,
+export const similarFilms = createSlice({
+  name: Namespace.SimilarFilms,
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchCommentsAction.pending, (state) => {
+      .addCase(fetchSimilarFilmsAction.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(fetchCommentsAction.fulfilled, (state, value) => {
+      .addCase(fetchSimilarFilmsAction.fulfilled, (state, value) => {
         state.isLoading = false;
         state.error = undefined;
         state.data = value.payload;
       })
-      .addCase(fetchCommentsAction.rejected, (state, value) => {
+      .addCase(fetchSimilarFilmsAction.rejected, (state, value) => {
         state.isLoading = false;
         state.error = value.error.message;
       });
