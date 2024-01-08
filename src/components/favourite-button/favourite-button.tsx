@@ -34,18 +34,18 @@ export const FavouriteButton = ({ filmId }: FavouriteButtonProps) => {
 
   return (
     <button
-      className="btn btn--list film-card__button"
-      type="button"
+      className='btn btn--list film-card__button'
+      type='button'
       onClick={handleClick}
     >
-      <svg viewBox="0 0 19 20" width="19" height="20">
+      <svg viewBox='0 0 19 20' width='19' height='20'>
         <use
           xlinkHref={isFavourite ? '#in-list' : '#add'}
           data-testid={'favorite-svg'}
-        ></use>
+        />
       </svg>
       <span>My list</span>
-      <span className="film-card__count">{films.length}</span>
+      <span className='film-card__count'>{films.length}</span>
     </button>
   );
 };
