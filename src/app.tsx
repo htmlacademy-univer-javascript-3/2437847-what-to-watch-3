@@ -17,11 +17,11 @@ export const App = () => (
         <Route path={appRoutes.SignIn} element={<SignInPage />} />
         <Route path={appRoutes.Player(':id')} element={<PlayerPage />} />
         <Route path={appRoutes.Film(':id')} element={<FilmPage />} />
-        <Route path={appRoutes.AddReview(':id')} element={<AddReviewPage />} />
       </Route>
 
       <Route element={<PrivateRoute />}>
         <Route path="mylist" element={<MyListPage />} />
+        <Route path={appRoutes.AddReview(':id')} element={<AddReviewPage />} />
       </Route>
 
       <Route path="*" element={<NotFoundPage />} />
