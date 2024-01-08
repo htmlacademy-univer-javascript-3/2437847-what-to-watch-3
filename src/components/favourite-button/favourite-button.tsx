@@ -39,7 +39,10 @@ export const FavouriteButton = ({ filmId }: FavouriteButtonProps) => {
       onClick={handleClick}
     >
       <svg viewBox="0 0 19 20" width="19" height="20">
-        <use xlinkHref={isFavourite ? '#in-list' : '#add'}></use>
+        <use
+          xlinkHref={isFavourite ? '#in-list' : '#add'}
+          data-testid={'favorite-svg'}
+        ></use>
       </svg>
       <span>My list</span>
       <span className="film-card__count">{films.length}</span>
