@@ -46,7 +46,9 @@ export const createFilm = ({ genre }: { genre?: string } = {}): FilmListType =>
     genre: genre ?? name.title(),
   }) as FilmListType;
 
-export const createCurrentFilm = (): FilmType =>
+export const createCurrentFilm = (
+  { isFavourite }: { isFavourite: boolean } = { isFavourite: false },
+): FilmType =>
   ({
     id: datatype.uuid(),
     name: name.title(),
@@ -56,7 +58,7 @@ export const createCurrentFilm = (): FilmType =>
     genre: name.title(),
     alt: name.title(),
     released: datatype.number(),
-    isFavorite: true,
+    isFavorite: isFavourite,
     backgroundColor: commerce.color(),
     description: lorem.words(10),
     rating: datatype.number(),

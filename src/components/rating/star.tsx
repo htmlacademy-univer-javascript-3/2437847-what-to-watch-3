@@ -9,6 +9,7 @@ export const Star = ({ value, onClick, disabled }: StarProps) => (
     <input
       className="rating__input"
       id={`star-${value}`}
+      data-testid={`star-${value}`}
       type="radio"
       name="rating"
       value={value}

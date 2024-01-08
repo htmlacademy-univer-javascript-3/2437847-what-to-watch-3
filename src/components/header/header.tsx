@@ -20,7 +20,7 @@ export const Header = ({ children, isMyListPage }: HeaderProps) => {
   const authStatus = useAuthorizationStatusSelector();
   const avatarLink = useAvatarLinkSelector();
   const dispatch = useAppDispatch();
-  const signOutHandler = useCallback(
+  const handleSignOut = useCallback(
     (event: MouseEvent<HTMLElement>) => {
       event.preventDefault();
       dispatch(logoutAction());
@@ -52,7 +52,7 @@ export const Header = ({ children, isMyListPage }: HeaderProps) => {
             </div>
           </li>
           <li className="user-block__item">
-            <a onClick={signOutHandler} className="user-block__link">
+            <a onClick={handleSignOut} className="user-block__link">
               Sign out
             </a>
           </li>
