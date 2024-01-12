@@ -17,7 +17,7 @@ export const MainPageFilmCatalog = () => {
   const genres = extractAllGenres(allFilms);
   const [countFilms, setCountFilms] = useState(FILMS_PER_PAGE);
 
-  const handleShowMore = useCallback(() => {
+  const handleShowMoreClick = useCallback(() => {
     setCountFilms((prev) => prev + FILMS_PER_PAGE);
   }, [setCountFilms]);
 
@@ -33,7 +33,7 @@ export const MainPageFilmCatalog = () => {
         <GenresList genres={genres} activeGenre={currentGenre} />
         <FilmCardList films={films?.slice(0, countFilms)} />
         {countFilms < films?.length && (
-          <ShowMoreButton onClick={handleShowMore} />
+          <ShowMoreButton onClick={handleShowMoreClick} />
         )}
       </Loader>
     </section>

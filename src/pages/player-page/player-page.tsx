@@ -27,7 +27,7 @@ export const PlayerPage = () => {
     setIsPlaying(!isPlaying);
   };
 
-  const handleFullScreen = () => {
+  const handleFullScreenClick = () => {
     const video = videoRef.current;
 
     if (video) {
@@ -126,7 +126,7 @@ export const PlayerPage = () => {
           <button
             type="button"
             className="player__full-screen"
-            onClick={handleFullScreen}
+            onClick={handleFullScreenClick}
           >
             <svg viewBox="0 0 27 27" width="27" height="27">
               <use xlinkHref="#full-screen"></use>

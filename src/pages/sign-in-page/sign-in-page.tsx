@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { appRoutes } from '../../app-routes.ts';
 import { useAuthorizationStatusSelector } from '../../store/user/selectors.ts';
 import { AuthorizationStatus } from '../../types/auth.ts';
+import { toast } from 'react-toastify';
 
 export const SignInPage = () => {
   const dispatch = useAppDispatch();
@@ -16,6 +17,14 @@ export const SignInPage = () => {
   const [password, setPassword] = useState('');
   const handleSubmit = (event: MouseEvent<HTMLElement>) => {
     event.preventDefault();
+    if (!email) {
+      toast.error('Email is required');
+      return;
+    }
+    if (!password) {
+      toast.error('Password is required');
+      return;
+    }
     dispatch(loginAction({ email, password })).then((result) => {
       if (result.payload) {
         navigate(appRoutes.Main);
