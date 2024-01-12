@@ -6,10 +6,19 @@ import { useAuthorizationStatusSelector } from '../../store/user/selectors.ts';
 import { MainPageFilmCatalog } from './main-page-film-catalog.tsx';
 import { FavouriteButton } from '../../components/favourite-button/favourite-button.tsx';
 import { PlayButton } from '../../components/play-button/play-button.tsx';
+import { useNavigate } from 'react-router-dom';
+import { appRoutes } from '../../app-routes.ts';
 
 export const MainPage = () => {
   const authStatus = useAuthorizationStatusSelector();
   const { data: promoFilm } = usePromoFilm();
+  const navigate = useNavigate();
+
+  const handlePosterClick = () => {
+    if (promoFilm) {
+      navigate(appRoutes.Film(promoFilm.id));
+    }
+  };
 
   return (
     <>
@@ -24,7 +33,7 @@ export const MainPage = () => {
 
         <div className="film-card__wrap">
           <div className="film-card__info">
-            <div className="film-card__poster">
+            <div className="film-card__poster" onClick={handlePosterClick}>
               <img
                 src={promoFilm?.posterImage}
                 alt={promoFilm?.name}

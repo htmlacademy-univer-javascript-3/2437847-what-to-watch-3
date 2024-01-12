@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { appRoutes } from '../../app-routes.ts';
 import { useState } from 'react';
 import { PreviewPlayer } from './preview-player.tsx';
@@ -17,6 +17,7 @@ export const FilmCard = ({
   previewVideoLink,
 }: FilmCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <article
@@ -28,7 +29,10 @@ export const FilmCard = ({
         setIsHovered(false);
       }}
     >
-      <div className="small-film-card__image">
+      <div
+        className="small-film-card__image"
+        onClick={() => navigate(appRoutes.Film(id))}
+      >
         <PreviewPlayer
           imgSrc={previewImage}
           videoSrc={previewVideoLink}
