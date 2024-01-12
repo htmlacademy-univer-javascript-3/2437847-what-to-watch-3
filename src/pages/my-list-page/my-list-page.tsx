@@ -8,7 +8,7 @@ export const MyListPage = () => {
   const { data: films, fetchFavouriteFilms } = useFavouriteFilms();
   useEffect(() => {
     fetchFavouriteFilms();
-  }, []);
+  }, [fetchFavouriteFilms]);
   return (
     <div className="user-page">
       <Header isMyListPage>
