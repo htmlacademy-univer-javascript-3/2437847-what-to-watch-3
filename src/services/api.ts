@@ -13,14 +13,14 @@ const BACKEND_URL = 'https://13.design.pages.academy/wtw';
 
 const REQUEST_TIMEOUT = 5000;
 
-const StatusCodeMapping: number[] = [
+const statusCodesToDisplayError: number[] = [
   StatusCodes.BAD_REQUEST,
   StatusCodes.UNAUTHORIZED,
   StatusCodes.NOT_FOUND,
 ];
 
 const shouldDisplayError = (response: AxiosResponse): boolean =>
-  StatusCodeMapping.includes(response.status);
+  statusCodesToDisplayError.includes(response.status);
 
 export const createAPI = (): AxiosInstance => {
   const api = axios.create({

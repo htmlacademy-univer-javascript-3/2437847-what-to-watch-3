@@ -2,9 +2,13 @@ import { Footer } from '../../components/footer/footer.tsx';
 import { Header } from '../../components/header/header.tsx';
 import { FilmCardList } from '../../components/film-card-list/film-card-list.tsx';
 import { useFavouriteFilms } from '../../hooks/films.ts';
+import { useEffect } from 'react';
 
 export const MyListPage = () => {
-  const { data: films } = useFavouriteFilms();
+  const { data: films, fetchFavouriteFilms } = useFavouriteFilms();
+  useEffect(() => {
+    fetchFavouriteFilms();
+  }, [fetchFavouriteFilms]);
   return (
     <div className="user-page">
       <Header isMyListPage>
