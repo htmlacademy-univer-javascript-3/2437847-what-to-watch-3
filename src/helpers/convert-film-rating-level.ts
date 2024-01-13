@@ -7,7 +7,7 @@ enum FilmRatingLevel {
 }
 
 export const convertFilmRatingToLevel = (rating: number): string => {
-  if (rating < 3) {
+  if (rating < FilmRatingLevel.BAD) {
     return 'Bad';
   } else if (rating >= FilmRatingLevel.BAD && rating < FilmRatingLevel.NORMAL) {
     return 'Normal';
@@ -18,7 +18,7 @@ export const convertFilmRatingToLevel = (rating: number): string => {
     return 'Good';
   } else if (
     rating >= FilmRatingLevel.GOOD &&
-    rating < FilmRatingLevel.AWESOME
+    rating < FilmRatingLevel.VERY_GOOD
   ) {
     return 'Very good';
   } else if (rating === FilmRatingLevel.AWESOME) {
